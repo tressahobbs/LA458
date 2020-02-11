@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html>
-<title>exercise1</title>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+<title>exercise 1</title>
 <body>
 
+<div class="navbar">
+  <a href="#home">Home</a>
+  <a href="#news">News</a>
+  <div class="dropdown">
+    <button class="dropbtn">Dropdown 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="https://tressahobbs.github.io/LA458/exercise2">Exercsie 2</a>
+      <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
+      <a href="https://tressahobbs.github.io/LA458/exercise4/#7/41.963/-93.369">Exercise 4</a>
+    </div>
+  </div> 
+</div>
+
 <h1>About Me</h1>
-<p>Hi Class!</p>
-  <p>My name is <b>Tressa Hobbs</b>. I am a senior in Anthropology and International Studies with minors in Classical Studies and GIS. I am on campus this semester. I don’t have any experience with coding in general or HTML/JavaScript but I am excited to learn. I have a decent amount of experience in GIS and am also currently taking CRP 351 and DSN 546. I’ve used GIS to map locations of artifacts and features discovered while working on an archaeological site and I will be using collector and web mapping this summer to document hiking trails in Iceland and will be helping make a web application for it. I hope to learn a lot about coding in this class and add to my current GIS skill set.</p>
+<p>Hi class!</p>
+	<p>My name is <b>Tressa Hobbs</b>. I am a senior in Anthropology and International Studies with two minors in Classical Studies and Geographic Information Systems. I am on campus this semester. I don’t have any experience with coding or with HTML or JavaScript but I am excited to learn. I have a decent amount of experience in GIS and I am also currently in CRP 351 and DSN_S 546. I’ve used GIS to map locations of artifacts and features discovered while working on an archaeological site and I will be using the Collector App and web mapping skill this summer to document hiking trails in Iceland. I will be using this data to help create a field guide and anthology as well as an online trail guide for it. I am hoping to learn a lot about coding in this class and to add to my current GIS skill set. </p>
 
 </body>
 </html>
