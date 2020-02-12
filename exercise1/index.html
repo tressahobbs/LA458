@@ -91,4 +91,37 @@ body {
 	<p>My name is <b>Tressa Hobbs</b>. I am a senior in Anthropology and International Studies with two minors in Classical Studies and Geographic Information Systems. I am on campus this semester. I don’t have any experience with coding or with HTML or JavaScript but I am excited to learn. I have a decent amount of experience in GIS and I am also currently in CRP 351 and DSN_S 546. I’ve used GIS to map locations of artifacts and features discovered while working on an archaeological site and I will be using the Collector App and web mapping skill this summer to document hiking trails in Iceland. I will be using this data to help create a field guide and anthology as well as an online trail guide for it. I am hoping to learn a lot about coding in this class and to add to my current GIS skill set. </p>
 
 </body>
+    <head>
+  <title>Multiplication Table</title>
+  <script type="text/javascript">
+    var rows = prompt("How many rows for your multiplication table?");
+    var cols = prompt("How many columns for your multiplication table?");
+    if(rows == "" || rows == null)
+   		 rows = 10;
+    if(cols== "" || cols== null)
+   		 cols = 10;
+    createTable(rows, cols);
+    function createTable(rows, cols)
+    {
+      var j=1;
+      var output = "<table border='1' width='500' cellspacing='0'cellpadding='5'>";
+      for(i=1;i<=rows;i++)
+      {
+    	output = output + "<tr>";
+        while(j<=cols)
+        {
+  		  output = output + "<td>" + i*j + "</td>";
+   		  j = j+1;
+   		}
+   		 output = output + "</tr>";
+   		 j = 1;
+          console.log("started next loop"+i);
+    }
+    output = output + "</table>";
+    document.write(output);
+    }
+  </script>
+</head>
+<body>
+</body>
 </html>
