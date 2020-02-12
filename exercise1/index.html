@@ -90,6 +90,7 @@ body {
 <p>Hi class!</p>
 	<p>My name is <b>Tressa Hobbs</b>. I am a senior in Anthropology and International Studies with two minors in Classical Studies and Geographic Information Systems. I am on campus this semester. I don’t have any experience with coding or with HTML or JavaScript but I am excited to learn. I have a decent amount of experience in GIS and I am also currently in CRP 351 and DSN_S 546. I’ve used GIS to map locations of artifacts and features discovered while working on an archaeological site and I will be using the Collector App and web mapping skill this summer to document hiking trails in Iceland. I will be using this data to help create a field guide and anthology as well as an online trail guide for it. I am hoping to learn a lot about coding in this class and to add to my current GIS skill set. </p>
 
+    
 </body>
     <head>
   <title>Multiplication Table</title>
@@ -105,6 +106,8 @@ body {
     {
       var j=1;
       var output = "<table border='1' width='500' cellspacing='0'cellpadding='5'>";
+        var newArray = ["this array has been logged"];
+        console.log(newArray);
       for(i=1;i<=rows;i++)
       {
     	output = output + "<tr>";
@@ -117,11 +120,18 @@ body {
    		 j = 1;
           console.log("started next loop"+i);
     }
-    output = output + "</table>";
-    document.write(output);
+    output = output + "</table>" + "<input type=\"button\" value=\"Click me\" onclick=\"makearray()\">" + " <input type=\"button\" value=\"No, click me!\" onclick=\"msg()\">";
+        document.write(output);
     }
+      
+      function msg() {
+          alert("Thanks for checking out my page! :)");
+      }
+      function makearray(){var size = prompt("Enter the size of the array");
+          var tom = [];
+          for(var i = 0; i < size; i++) {tom.push(''+i);}
+          console.log(tom);
+      }
   </script>
 </head>
-<body>
-</body>
 </html>
