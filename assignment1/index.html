@@ -57,10 +57,19 @@ body {
     </div>
   </div> 
 </div>
-   
+    
+<h2> What is your favorite dessert?</h2>
+    <input type="checkbox" id="dessert1" name="dessert1" value="cheesecake">
+    <label for="dessert1">My favorite dessert is cheesecake</label>
+    <input type="checkbox" id="dessert2" name="dessert2" value="chocolate covered strawberries">
+    <label for="dessert2">My favorite dessert is chocolate covered strawberries</label>
+    <input type="checkbox" id="dessert3" name="dessert3" value="cupcakes">
+    <label for="dessert3">My favorite dessert is cupcakes</label>
+    <input type="checkbox" id="dessert4" name="dessert4" value="ice cream">
+    <label for="dessert4">My favorite dessert is ice cream</label> 
+    
 </body>
-    <head>
-  <title>Multiplication Table</title>
+    
   <script type="text/javascript">
     var rows = prompt("How many rows for the multiplication table?");
     var cols = prompt("How many columns for the multiplication table?");
@@ -75,10 +84,12 @@ body {
       var output = "<table border='1'>";
         var newArray = ["this array has been logged"];
         console.log(newArray);
-      for(i=1;i<=rows;i++)
+      for(i=1;i<=rows;i++) 
+          //This loop is just running the i=1 until it is less than or equal to the rows variable input, while adding 1 to the old value on each return. So i=1 is defining the variable, i<=rows is the condition that the loop must meet to run, and i++ increases the value by 1 every time the loop runs successfully.
       {
     	output = output + "<tr>";
         while(j<=cols)
+            //this "while" has the code looping as long as the variable j is less than or equal to the number of columns inputed for the prompt. It will stop the loop once the value of j is equal to the value inputed for the number of columns. 
         {
   		  output = output + "<td>" + i*j + "</td>";
    		  j = j+1;
@@ -90,15 +101,46 @@ body {
     output = output + "</table>";
         document.write(output);
     }
-        </script>
-        
+      
+
+    
       <button onclick="thisFunction()">Click me!</button> 
-        <script>
+        
             function thisFunction() {alert("Thanks for checking out my page!");} 
-        </script>
+    
+    
         <button onclick="prompt('What is your favorite color?');">No, click me!</button>
-        <script> var colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "black"];
+        <script> var colors = [{
+                                kind:"red",
+                                tone:"warm", 
+                                primarycolor:true
+                                }, 
+                               {king:"blue",
+                                tone:"cool",
+                                primarycolor:true
+                               },
+                               {kind:"green",
+                                tone:"warm",
+                                primarycolor:false
+                               },
+                                {kind:"yellow", 
+                                 tone:"warm",
+                                 primarycolor:true
+                                },
+                               {kind:"purple",
+                                tone:"warm",
+                                primarycolor:false
+                               },
+                               {kind:"orange", 
+                                tone:"warm",
+                                primarycolor:false
+                               },
+                               {kind:"pink",
+                                tone:"warm",
+                                primarycolor:false
+                               },
+                               ];
             console.log(colors);
+            
         </script>
-</head>
 </html>
