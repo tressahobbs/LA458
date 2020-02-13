@@ -64,8 +64,8 @@ body {
     <head>
   <title>Multiplication Table</title>
   <script type="text/javascript">
-    var rows = prompt("How many rows for your multiplication table?");
-    var cols = prompt("How many columns for your multiplication table?");
+    var rows = prompt("How many rows for the multiplication table?");
+    var cols = prompt("How many columns for the multiplication table?");
     if(rows == "" || rows == null)
    		 rows = 10;
     if(cols== "" || cols== null)
@@ -74,7 +74,7 @@ body {
     function createTable(rows, cols)
       {
         var j=1;
-      var output = "<table border='1' width='500'>";
+      var output = "<table border='1'>";
         var newArray = ["this array has been logged"];
         console.log(newArray);
       for(i=1;i<=rows;i++)
