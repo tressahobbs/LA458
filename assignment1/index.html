@@ -58,7 +58,7 @@ body {
   </div> 
 </div>
     
-<h2> What is your favorite dessert?</h2>
+<h3> What is your favorite dessert?</h3>
     <input type="checkbox" id="dessert1" name="dessert1" value="cheesecake">
     <label for="dessert1">My favorite dessert is cheesecake</label>
     <input type="checkbox" id="dessert2" name="dessert2" value="chocolate covered strawberries">
@@ -67,6 +67,9 @@ body {
     <label for="dessert3">My favorite dessert is cupcakes</label>
     <input type="checkbox" id="dessert4" name="dessert4" value="ice cream">
     <label for="dessert4">My favorite dessert is ice cream</label> 
+    
+    <button onclick="thisFunction()">Click me!</button> 
+    <button onclick="prompt('What is your favorite color?');">No, click me!</button>
     
 </body>
     
@@ -101,16 +104,8 @@ body {
     output = output + "</table>";
         document.write(output);
     }
-      
-
-    
-      <button onclick="thisFunction()">Click me!</button> 
-        
             function thisFunction() {alert("Thanks for checking out my page!");} 
-    
-    
-        <button onclick="prompt('What is your favorite color?');">No, click me!</button>
-        <script> var colors = [{
+      var colors = [{
                                 kind:"red",
                                 tone:"warm", 
                                 primarycolor:true
