@@ -1,62 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <head>
 <style>
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
 }
-
 .navbar {
-  overflow: hidden;
   background-color: #333;
+    overflow: hidden;
 }
-
 .navbar a {
   float: left;
   font-size: 16px;
   color: white;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
 }
-
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
 .dropdown .dropbtn {
   font-size: 16px;  
-  border: none;
-  outline: none;
   color: white;
-  padding: 14px 16px;
   background-color: inherit;
-  font-family: inherit;
-  margin: 0;
 }
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
-}
-
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  min-width: 140px;
 }
 
 .dropdown-content a {
   float: none;
   color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
   text-align: left;
 }
 
@@ -69,7 +42,7 @@ body {
 }
 </style>
 </head>
-<title>exercise 1</title>
+<title>Assignment 1</title>
 <body>
 
 <div class="navbar">
@@ -99,9 +72,9 @@ body {
    		 cols = 10;
     createTable(rows, cols);
     function createTable(rows, cols)
-    {
-      var j=1;
-      var output = "<table border='1' width='500' cellspacing='0'cellpadding='5'>";
+      {
+        var j=1;
+      var output = "<table border='1' width='500'>";
         var newArray = ["this array has been logged"];
         console.log(newArray);
       for(i=1;i<=rows;i++)
@@ -114,20 +87,20 @@ body {
    		}
    		 output = output + "</tr>";
    		 j = 1;
+      }
           console.log("started next loop"+i);
-    }
-    output = output + "</table>" + "<input type=\"button\" value=\"Click me\" onclick=\"makearray()\">" + " <input type=\"button\" value=\"No, click me!\" onclick=\"msg()\">";
+    output = output + "</table>";
         document.write(output);
     }
-      
-      function msg() {
-          alert("Thanks for checking out my page! :)");
-      }
-      function makearray(){var size = prompt("Enter the size of the array");
-          var tom = [];
-          for(var i = 0; i < size; i++) {tom.push(''+i);}
-          console.log(tom);
-      }
-  </script>
+        </script>
+        
+      <button onclick="thisFunction()">Click me!</button> 
+        <script>
+            function thisFunction() {alert("Thanks for checking out my page!");} 
+        </script>
+        <button onclick="prompt('What is your favorite color?');">No, click me!</button>
+        <script> var colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "black"];
+            console.log(colors);
+        </script>
 </head>
 </html>
