@@ -57,8 +57,8 @@ body {
     </div>
   </div> 
 </div>
-    
-<h3> What is your favorite dessert?</h3>
+    <h2> Welcome to my whimsical webpage! Have fun exploring.</h2>
+<h4> What is your favorite dessert?</h4>
     <input type="checkbox" id="dessert1" name="dessert1" value="cheesecake">
     <label for="dessert1">My favorite dessert is cheesecake</label>
     <input type="checkbox" id="dessert2" name="dessert2" value="chocolate covered strawberries">
@@ -70,6 +70,14 @@ body {
     
     <button onclick="thisFunction()">Click me!</button> 
     <button onclick="prompt('What is your favorite color?');">No, click me!</button>
+    
+    <p id="fruits"></p>
+    
+    <p> I'm thinking of a number. Guess which one: 4, 7, 8, 13, or 80?</p>
+        <input id="myInput" type="text">
+            <button onclick="numberfunction()">Try your luck</button>
+                <p id="luck"></p>
+    
     
 </body>
     
@@ -105,6 +113,7 @@ body {
         document.write(output);
     }
             function thisFunction() {alert("Thanks for checking out my page!");} 
+      
       var colors = [{
                                 kind:"red",
                                 tone:"warm", 
@@ -136,6 +145,37 @@ body {
                                },
                                ];
             console.log(colors);
-            
-        </script>
+        var fruits = ["strawberry", "banana", "mango", "kiwi", "pomegranate"];
+        var text = "";
+        var r; 
+        for (r = 0; r<fruits.length; r++)////the code will loop, adding one to the value  until it has reached the number of items contained within the array, in this case it is 5 fruits and the code prints the names of the fruit
+        {
+            text += fruits[r] + "<br>";
+        }
+        document.getElementById("fruits").innerHTML = text;  
+         
+        document.write (32+43/2); 
+      
+      function numberfunction() {
+          var number = document.getElementById("myInput").value;
+          var text;
+            //if the number is "4"
+            if (number === "4") {
+                text = "You're a lucky one! You're right.";
+            }
+          // if the number is "7" or "8"
+            else if (number === "7" || number === "8") {
+                text = "You're close, but not quite.";
+            }
+          //if the number is "13"
+          else if (number === "13") {
+            text = "13 is unlucky, just like you. Better luck next time.";
+            } 
+          // if the number is "80"
+          else { 
+              text = "Waaaay off... try going a bit lower.";
+          }
+          document.getElementById("luck").innerHTML = text;
+      }
+</script>
 </html>
