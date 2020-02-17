@@ -10,13 +10,71 @@
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
 <style>
-     #map {
+
+    font-family: Arial, sans-serif; 
+}
+.navbar {
+  background-color: #333;
+    overflow: hidden;
+    font-family: Arial;
+}
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+}
+.dropdown .dropbtn {
+  font-size: 16px;  
+  color: black;
+  background-color: inherit;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+    z-index: 1;
+}
+
+    
+.dropdown-content a {
+  float: none;
+  color: black;
+  text-align: left;
+}
+
+.dropdown-content a:hover {    
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+     #map{
         width: 700px;
         height: 500px;
     }
     </style>
     </head>
 <body>
+    
+    <div class="navbar">
+  <a href="index.html">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Dropdown 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/LA458/exercise1/index.html">Exercise 1</a>
+    <a href="exercise2/index.html">Exercise 2</a>
+      <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
+      <a href="exercise4/index.html">Exercise 4</a>
+        <a href="assignment1/index.html">Assignment 1</a>
+    </div>
+  </div> 
+</div>
+    
     <div id='map'></div>
     
     <br>Pan to <a href="javascript:keokuk()">Keokuk, Iowa</a><br> 
@@ -30,7 +88,7 @@
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 15,
+            maxZoom:,
             id: 'mapbox/streets-v11', 
             accessToken:'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazZwYWhxNGoxazg2M2xwdWpna3ZoeXU0In0.EkkUYqhlOuY6yAWwGVlYEg' }).addTo(map);
     
