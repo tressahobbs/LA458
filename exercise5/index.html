@@ -19,11 +19,11 @@
 <body>
     <div id='map'></div>
     
-    <br><br> EDIT ME
+    <br>Pan to <a href="javascript:keokuk()">Keokuk, Iowa</a><br> 
     
-    <a href=""></a> EDIT ME 
+    <a href="javascript:zoomIn()">Zoom in to level 2</a><br>
     
-    <button id=""></button> EDIT ME
+    <button id="stormlake">Go to Storm Lake, Iowa</button>
     
 <script>
      var map = L.map('map').setView([42.0, -93.634], 13);
@@ -33,6 +33,39 @@
             maxZoom: 18,
             id: 'mapbox/streets-v11', 
             accessToken:'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazZwYWhxNGoxazg2M2xwdWpna3ZoeXU0In0.EkkUYqhlOuY6yAWwGVlYEg' }).addTo(map);
+    
+      L.marker([42.026111, -93.648333]).addTo(map)
+    .bindPopup("My University Location")
+    .openPopup(); 
+      
+      //array of towns in Iowa
+      var towns = [
+          [41.590833,-93.620833, "Des Moines, Iowa"], 
+          [41.726667,-93.604167, "Ankeny, Iowa"],
+          [41.983056,-91.668611, "Cedar Rapids, Iowa"],
+          [42.643611,-95.201944, "Storm Lake, Iowa"],
+          [40.397222,-91.358, "Keokuk, Iowa"]
+      ];
+    
+    //loop function to create markers
+    for (var i = 0; i < towns.length; i++) {
+        marker = new L.marker([towns[i][0]])
+            .bindPopup(towns[i][2])
+            .addTo(map);
+    }
+    
+    //links for the map
+    function keokuk() {
+        map.panTo(new L.LatLng(40.397222, -91.358));
+    }
+    
+    function zoomIn() {
+        map.setZoom(2);
+    }
+    
+    function stormlake() {
+        map.setView(new L.LatLng(42.643611, -95.201944) 10)
+    }
     
     </script>
     </body>
