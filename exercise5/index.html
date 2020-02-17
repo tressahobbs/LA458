@@ -21,16 +21,16 @@
     
     <br>Pan to <a href="javascript:keokuk()">Keokuk, Iowa</a><br> 
     
-    <a href="javascript:zoomIn()">Zoom in to level 2</a><br>
+    <a href="javascript:zoomIn()">Zoom out to level 10</a><br>
     
-    <button id="stormlake">Go to Storm Lake, Iowa</button>
+    <button id="stormlakE">Go to Storm Lake, Iowa</button>
     
 <script>
      var map = L.map('map').setView([42.0, -93.634], 13);
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
+            maxZoom: 15,
             id: 'mapbox/streets-v11', 
             accessToken:'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazZwYWhxNGoxazg2M2xwdWpna3ZoeXU0In0.EkkUYqhlOuY6yAWwGVlYEg' }).addTo(map);
     
@@ -57,15 +57,18 @@
     //links for the map
     function keokuk() {
         map.panTo(new L.LatLng(40.397222, -91.358));
-    }
+    };
     
     function zoomIn() {
-        map.setZoom(2);
-    }
+        map.setZoom(10);
+    };
+    
+    document.getElementById("stormlakE").addEventListener("Click", stormlake);
     
     function stormlake() {
-        map.setView(new L.LatLng(42.643611, -95.201944) 10)
-    }
+        map.setView(new L.LatLng(42.643611, -95.201944) 8)
+    };
     
     </script>
     </body>
+</html>
