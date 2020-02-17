@@ -10,23 +10,22 @@
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
 <style>
-
-    font-family: Arial, sans-serif; 
+   body {
+  font-family: Arial, sans-serif;
 }
 .navbar {
   background-color: #333;
     overflow: hidden;
-    font-family: Arial;
 }
 .navbar a {
   float: left;
   font-size: 16px;
-  color: black;
+  color: white;
   text-align: center;
 }
 .dropdown .dropbtn {
   font-size: 16px;  
-  color: black;
+  color: white;
   background-color: inherit;
 }
 .dropdown-content {
@@ -34,17 +33,15 @@
   position: absolute;
   background-color: #f9f9f9;
   min-width: 140px;
-    z-index: 1;
 }
 
-    
 .dropdown-content a {
   float: none;
   color: black;
   text-align: left;
 }
 
-.dropdown-content a:hover {    
+.dropdown-content a:hover {
   background-color: #ddd;
 }
 
@@ -77,24 +74,44 @@
     
     <div id='map'></div>
     
-    <br>Pan to <a href="javascript:keokuk()">Keokuk, Iowa</a><br> 
+    <br>Pan to <a href="javascript:ankeny()">Ankeny, Iowa</a><br> 
     
-    <a href="javascript:zoomIn()">Zoom out to level 10</a><br>
+    <a href="javascript:zoomOut()">Zoom out to level 9</a><br>
     
-    <button id="stormlakE">Go to Storm Lake, Iowa</button>
+    <a href="javascript:zoomIn()">Zoom in to level 16</a><br>
     
 <script>
-     var map = L.map('map').setView([42.0, -93.634], 13);
+     var map = L.map('map').setView([42.034722, -93.62], 13);
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom:,
+            maxZoom:18,
             id: 'mapbox/streets-v11', 
             accessToken:'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazZwYWhxNGoxazg2M2xwdWpna3ZoeXU0In0.EkkUYqhlOuY6yAWwGVlYEg' }).addTo(map);
     
       L.marker([42.026111, -93.648333]).addTo(map)
     .bindPopup("My University Location")
     .openPopup(); 
+    
+    L.marker([41.590833, -93.620833]).addTo(map)
+        .bindPopup("Des Moines, Iowa")
+        .openPopup();
+    
+    L.marker([41.726667, -93.604167]).addTo(map)
+        .bindPopup("Ankeny, Iowa")
+        .openPopup();
+    
+    L.marker([41.983056, -91.668611]).addTo(map)
+        .bindPopup("Cedar Rapids, Iowa")
+        .openPopup();
+    
+    L.marker([42.643611, -95.201944]).addTo(map)
+        .bindPopup("Storm Lake, Iowa")
+        .openPopup();
+    
+    L.marker([40.397222, -91.358]).addTo(map)
+        .bindPopup("Keokuk, Iowa")
+        .openPopup();
       
       //array of towns in Iowa
       var towns = [
@@ -110,22 +127,19 @@
         marker = new L.marker([towns[i][0]])
             .bindPopup(towns[i][2])
             .addTo(map);
-    }
+    };
     
     //links for the map
-    function keokuk() {
-        map.panTo(new L.LatLng(40.397222, -91.358));
+    function ankeny() {
+        map.panTo(new L.LatLng(41.726667, -93.604167));
     };
     
-    function zoomIn() {
-        map.setZoom(10);
+    function zoomOut() {
+        map.setZoom(9);
     };
-    
-    document.getElementById("stormlakE").addEventListener("Click", stormlake);
-    
-    function stormlake() {
-        map.setView(new L.LatLng(42.643611, -95.201944) 8)
-    };
+     function zoomIn() {
+        map.setZoom(16);
+     }
     
     </script>
     </body>
