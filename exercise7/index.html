@@ -7,73 +7,156 @@
 	<title>exercise7</title>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <style>
+    .navbar {
+  background-color: #333;
+    overflow: hidden;
+}
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+}
+.dropdown .dropbtn {
+  font-size: 16px;  
+  color: white;
+  background-color: inherit;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+#map {
+    height: 400px;
+    width: 600px;
+}
+    </style>
 </head>
 <body>
-	<div id="map" style="width: 600px; height: 400px"></div>
+	<div class="navbar">
+     <a href="../index.html">Home</a>
+     <div class="dropdown">
+         <button class="dropbtn">Dropdown
+             <i class="fa fa-caret-down"></i>
+         </button>
+         <div class="dropdown-content">
+             <a href="../exercise1/index.html">Exercise 1</a>
+             <a href="../exercise2/index.html">Exercise 2</a>
+             <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
+             <a href="../exercise4/index.html">Exercise 4</a>
+             <a href="../assignment1/index.html">Assignment 1</a>
+             <a href="../exercise5/index.html">Exercise 5</a>
+             <a href="../exercise6/index.html">Exercise 6</a>
+         </div>
+     </div>
+ </div>
+    
+    <br>
+    <br>
+    <br>
+    <h3>Welcome to my map of Oslo, Norway!</h3>
+    <br>
+    <br>
+    <br>
+    
+    <div id="map" style="width: 600px; height: 400px"></div>
 
 	<script type="text/javascript">
 		//OSM tiles attribution and URL
-		var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-		var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-		var osmAttrib = '&copy; ' + osmLink;
-		
+var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib = '&copy; ' + osmLink;
 
-		//Stamen Toner tiles attribution and URL
-		var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
-		var stamenAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 
-		//Creation of map tiles
-		var osmMap = L.tileLayer(osmURL, {attribution: osmAttrib});
-		var stamenMap = L.tileLayer(stamenURL,{
-			attribution: stamenAttrib,
-			subdomains: 'abcd',
-			minZoom: 0,
-			maxZoom: 20,
-			ext: 'png'
-		});
-        
-        //vector layer - markers
-        var wayDownSouth = L.marker([59.919144, 10.754708]).bindPopup('This is Way Down South, a BBQ restaurant that serves the best BBQ pork and sweet potato fries in Oslo.'),
-            rorbuaAkerBrygge = L.marker([59.908610, 10.724444]).bindPopup('This is Rorbua Aker Brygge, a restaurant that serves traditional Norwegian food.'),
-            hardRockCafe = L.marker([59.914669, 10.736698]).bindPopup('This is the Hard Rock Cafe: Oslo, a restaurant that serves classic American dishes.'),
-            rebell = L.marker([59.922066, 10.759431]).bindPopup('This is Rebell, a bar that has great burgers and cocktails.');
-       
-        //creation of vector layer group
-        var restaurants = L.layerGroup([wayDownSouth, rorbuaAkerBrygge, hardRockCafe, rebell]);
-        
+//Stamen Toner tiles attribution and URL
+var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
+var stamenAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
        
         
-        //vector layer - circle markers
-        var astrupFearnleyMuseum = L.circleMarker([59.9075, 10.744167], {radius: 20}).bindPopup('This is the Astrup Fearnley Museum of Modern Art!'),
-            nobelPeaceCenter = L.circleMarker([59.911483, 10.730481], {radius: 20}).bindPopup('This is the Nobel Peace Center!'),
-            museumOfCulturalHistory = L.circleMarker([59.916806, 10.735472], {radius: 20}).bindPopup('This is the Museum of Cultural History!'),
-            norwayResistanceMuseum = L.circleMarker([59.9079, 10.7358], {radius: 20}).bindPopup('This is the Resistance Museum!'),
-                norwegianArmedForcesMuseum = L.circleMarker([59.904444, 10.740833], {radius: 20}).bindPopup('This is the Norwegian Armed Forces Museum!'), 
-            munchMuseum = L.circleMarker([59.916951, 10.774498], {radius: 20}).bindPopup('This is the Munch Art Museum!'),
-            naturalHistoryMuseum = L.circleMarker([59.9198, 10.7717], {radius: 20}).bindPopup('This is the Natural History Museum!');
-        
-        //creation of second vector layer group
-        var museums = L.layerGroup([astrupFearnleyMuseum, nobelPeaceCenter, museumOfCulturalHistory, norwayResistanceMuseum, norwegianArmedForcesMuseum, munchMuseum, naturalHistoryMuseum]);
-        
-  
-		
-        //Map creation
-		var map = L.map('map',{
-			layers: [osmMap]
-		}).setView([59.913889, 10.752222], 14);
+//Creation of map tiles
+var osmMap = L.tileLayer(osmURL, {
+    attribution: osmAttrib
+});
+var stamenMap = L.tileLayer(stamenURL, {
+    attribution: stamenAttrib,
+    subdomains: 'abcd',
+    minZoom: 0,
+    maxZoom: 20,
+    ext: 'png'
+});
 
-		//Base layers definition and addition
-		var baseLayers = {
-			"OSM Mapnik": osmMap,
-			"Stamen Toner": stamenMap
-		};
-	  
-        var vectorLayers = {
-            "Restaurants": restaurants,
-            "Museums": museums
-        };
-		 //Add baseLayers to map as control layers
-		 L.control.layers(baseLayers, vectorLayers).addTo(map);
+//vector layer - markers
+var wayDownSouth = L.marker([59.919144, 10.754708]).bindPopup('This is Way Down South, a BBQ restaurant that serves the best BBQ pork and sweet potato fries in Oslo.'),
+    rorbuaAkerBrygge = L.marker([59.908610, 10.724444]).bindPopup('This is Rorbua Aker Brygge, a restaurant that serves traditional Norwegian food.'),
+    hardRockCafe = L.marker([59.914669, 10.736698]).bindPopup('This is the Hard Rock Cafe: Oslo, a restaurant that serves classic American dishes.'),
+    rebell = L.marker([59.922066, 10.759431]).bindPopup('This is Rebell, a bar that has great burgers and cocktails.');
+
+//creation of vector layer group
+var restaurants = L.layerGroup([wayDownSouth, rorbuaAkerBrygge, hardRockCafe, rebell]);
+
+//vector layer - circle markers
+var astrupFearnleyMuseum = L.circleMarker([59.9075, 10.744167], {
+        radius: 20
+    }).bindPopup('This is the Astrup Fearnley Museum of Modern Art!'),
+    nobelPeaceCenter = L.circleMarker([59.911483, 10.730481], {
+        radius: 20
+    }).bindPopup('This is the Nobel Peace Center!'),
+    museumOfCulturalHistory = L.circleMarker([59.916806, 10.735472], {
+        radius: 20
+    }).bindPopup('This is the Museum of Cultural History!'),
+    norwayResistanceMuseum = L.circleMarker([59.9079, 10.7358], {
+        radius: 20
+    }).bindPopup('This is the Resistance Museum!'),
+    norwegianArmedForcesMuseum = L.circleMarker([59.904444, 10.740833], {
+        radius: 20
+    }).bindPopup('This is the Norwegian Armed Forces Museum!'),
+    munchMuseum = L.circleMarker([59.916951, 10.774498], {
+        radius: 20
+    }).bindPopup('This is the Munch Art Museum!'),
+    naturalHistoryMuseum = L.circleMarker([59.9198, 10.7717], {
+        radius: 20
+    }).bindPopup('This is the Natural History Museum!');
+
+//creation of second vector layer group
+var museums = L.layerGroup([astrupFearnleyMuseum, nobelPeaceCenter, museumOfCulturalHistory, norwayResistanceMuseum, norwegianArmedForcesMuseum, munchMuseum, naturalHistoryMuseum]);
+
+
+//Map creation
+var map = L.map('map', {
+    layers: [osmMap]
+}).setView([59.913889, 10.752222], 14);
+
+//Base layers definition and addition
+var baseLayers = {
+    "OSM Mapnik": osmMap,
+    "Stamen Toner": stamenMap
+};
+
+var vectorLayers = {
+    "Restaurants": restaurants,
+    "Museums": museums
+};
+
+
+//Add baseLayers to map as control layers
+L.control.layers(baseLayers, vectorLayers).addTo(map);
 	</script>
 </body>
 </html>
