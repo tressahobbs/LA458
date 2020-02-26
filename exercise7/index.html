@@ -41,9 +41,21 @@
         //creation of vector layer group
         var restaurants = L.layerGroup([wayDownSouth, rorbuaAkerBrygge, hardRockCafe, rebell]);
         
-        var overlays = {
-            "Restaurants": restaurants
-        };
+       
+        
+        //vector layer - circle markers
+        var astrupFearnleyMuseum = L.circleMarker([59.9075, 10.744167], {radius: 20}).bindPopup('This is the Astrup Fearnley Museum of Modern Art!'),
+            nobelPeaceCenter = L.circleMarker([59.911483, 10.730481], {radius: 20}).bindPopup('This is the Nobel Peace Center!'),
+            museumOfCulturalHistory = L.circleMarker([59.916806, 10.735472], {radius: 20}).bindPopup('This is the Museum of Cultural History!'),
+            norwayResistanceMuseum = L.circleMarker([59.9079, 10.7358], {radius: 20}).bindPopup('This is the Resistance Museum!'),
+                norwegianArmedForcesMuseum = L.circleMarker([59.904444, 10.740833], {radius: 20}).bindPopup('This is the Norwegian Armed Forces Museum!'), 
+            munchMuseum = L.circleMarker([59.916951, 10.774498], {radius: 20}).bindPopup('This is the Munch Art Museum!'),
+            naturalHistoryMuseum = L.circleMarker([59.9198, 10.7717], {radius: 20}).bindPopup('This is the Natural History Museum!');
+        
+        //creation of second vector layer group
+        var museums = L.layerGroup([astrupFearnleyMuseum, nobelPeaceCenter, museumOfCulturalHistory, norwayResistanceMuseum, norwegianArmedForcesMuseum, munchMuseum, naturalHistoryMuseum]);
+        
+  
 		
         //Map creation
 		var map = L.map('map',{
@@ -56,8 +68,12 @@
 			"Stamen Toner": stamenMap
 		};
 	  
+        var vectorLayers = {
+            "Restaurants": restaurants,
+            "Museums": museums
+        };
 		 //Add baseLayers to map as control layers
-		 L.control.layers(baseLayers, overlays).addTo(map);
+		 L.control.layers(baseLayers, vectorLayers).addTo(map);
 	</script>
 </body>
 </html>
