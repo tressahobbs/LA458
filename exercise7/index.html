@@ -139,27 +139,9 @@ var museums = L.layerGroup([astrupFearnleyMuseum, nobelPeaceCenter, museumOfCult
 
 
 //raster overlay
-        var osmTileJSON = {
-    "name": "Weather Underground",
-    "description": ":",
-    "version": "1.0.0",
-    "attribution": ":",
-    "scheme": "xyz",
-    "type":"overlay",
-    "version":"1",
-    "format":"png",        
-    "tiles": [
-        "http://tileserver.maptiler.com/weather/{z}/{x}/{y}.png"
-    ],
-    "subdomains": ["a","b","c"],
-    "minzoom": 0,
-    "maxzoom": 6,
-    "bounds": [[-179.999941, -60.010742],[179.993412,59.982]],
-    "scale":"1",
-    "basename":"weather",
-    "profile":"mercator",
-    "tilejson":"2.0.0",
-    "grids": "http://tileserver.maptiler.com/weather/{z}/{x}/{y}.grid.json"};
+ var weatherOverlay = L.tileLayer('http://tileserver.maptiler.com/weather/{z}/{x}/{y}.png?_ga=2.5825', {
+           opacity: 0.85
+         });
         
 //Map creation
 var map = L.map('map', {
@@ -172,17 +154,14 @@ var baseLayers = {
     "Stamen Toner": stamenMap
 };
 
-var vectorLayers = {
+var overlayLayers = {
     "Restaurants": restaurants,
-    "Museums": museums
-};
-
- var rasterLayer = {
-     "Weather Underground": osmTileJSON
+    "Museums": museums,
+     "Weather Underground": weatherOverlay
  };
         
 //Add baseLayers to map as control layers
-L.control.layers(baseLayers, vectorLayers, rasterLayer).addTo(map);
+L.control.layers(baseLayers, overlayLayers).addTo(map);
 	</script>
 </body>
 </html>
