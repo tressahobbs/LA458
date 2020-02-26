@@ -1,33 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script>
-    </script>
-    <style>
+<head>
+     <meta name="description" content="LA/CRP 458/558 Leaflet starter file -     2020">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+	<title>exercise7</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+</head>
+<body>
+	<div id="map" style="width: 600px; height: 400px"></div>
+
+	<script type="text/javascript">
+		//OSM tiles attribution and URL
+		var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+		var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		var osmAttrib = '&copy; ' + osmLink;
+		
+
+		//Stamen Toner tiles attribution and URL
+		var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
+		var stamenAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+		//Creation of map tiles
+		var osmMap = L.tileLayer(osmURL, {attribution: osmAttrib});
+		var stamenMap = L.tileLayer(stamenURL,{
+			attribution: stamenAttrib,
+			subdomains: 'abcd',
+			minZoom: 0,
+			maxZoom: 20,
+			ext: 'png'
+		});
+        
+        //vector layer - markers
+        var wayDownSouth = L.marker([59.919144, 10.754708]).bindPopup('This is Way Down South, a BBQ restaurant that serves the best BBQ pork and sweet potato fries in Oslo.'),
+            rorbuaAkerBrygge = L.marker([59.908610, 10.724444]).bindPopup('This is Rorbua Aker Brygge, a restaurant that serves traditional Norwegian food.'),
+            hardRockCafe = L.marker([59.914669, 10.736698]).bindPopup('This is the Hard Rock Cafe: Oslo, a restaurant that serves classic American dishes.'),
+            rebell = L.marker([59.922066, 10.759431]).bindPopup('This is Rebell, a bar that has great burgers and cocktails.');
        
-    </style>
-  </head>
-  <body>
-      
-       <div class="navbar">
-     <a href="../index.html">Home</a>
-     <div class="dropdown">
-         <button class="dropbtn">Dropdown
-             <i class="fa fa-caret-down"></i>
-         </button>
-         <div class="dropdown-content">
-             <a href="../exercise1/index.html">Exercise 1</a>
-             <a href="../exercise2/index.html">Exercise 2</a>
-             <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
-             <a href="../exercise4/index.html">Exercise 4</a>
-             <a href="../assignment1/index.html">Assignment 1</a>
-             <a href="../exercise5/index.html">Exercise 5</a>
-             <a href="../exercise6/index.html">Exercise 6</a>
-         </div>
-     </div>
- </div>
-      
-    <script>
-    </script>
-  </body>
+        //creation of vector layer group
+        var restaurants = L.layerGroup([wayDownSouth, rorbuaAkerBrygge, hardRockCafe, rebell]);
+        
+        var overlays = {
+            "Restaurants": restaurants
+        };
+		
+        //Map creation
+		var map = L.map('map',{
+			layers: [osmMap]
+		}).setView([59.913889, 10.752222], 14);
+
+		//Base layers definition and addition
+		var baseLayers = {
+			"OSM Mapnik": osmMap,
+			"Stamen Toner": stamenMap
+		};
+	  
+		 //Add baseLayers to map as control layers
+		 L.control.layers(baseLayers, overlays).addTo(map);
+	</script>
+</body>
 </html>
