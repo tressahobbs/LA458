@@ -17,6 +17,41 @@
     
        
         <style>
+             .navbar {
+  background-color: #333;
+    overflow: hidden;
+}
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+}
+.dropdown .dropbtn {
+  font-size: 16px;  
+  color: white;
+  background-color: inherit;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
             #map {
                 width: 700px;
                 height: 500px;
@@ -24,6 +59,25 @@
         </style>
     </head>
     <body>
+        <div class="navbar">
+     <a href="../index.html">Home</a>
+     <div class="dropdown">
+         <button class="dropbtn">Dropdown
+             <i class="fa fa-caret-down"></i>
+         </button>
+         <div class="dropdown-content">
+             <a href="../exercise1/index.html">Exercise 1</a>
+             <a href="../exercise2/index.html">Exercise 2</a>
+             <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
+             <a href="../exercise4/index.html">Exercise 4</a>
+             <a href="../assignment1/index.html">Assignment 1</a>
+             <a href="../exercise5/index.html">Exercise 5</a>
+             <a href="../exercise6/index.html">Exercise 6</a>
+             <a href="../exercise7/index.html">Exercise 7</a>
+         </div>
+     </div>
+ </div>
+        
         <div id='map'></div>
         
         <script>
@@ -36,9 +90,14 @@
 accessToken:'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazc4Mm8zZDAwNXQ2M2V0Y2xtMXk1c2Q4In0.uX0jerjoicgCDZ4AcEyMxQ'
             }).addTo(map);
             
-            var USAstates = L.geoJSON('states').addTo(map);
-           var USAcities = L.geoJSON('us_cities').addTo(map);
-            var USAhighways = L.geoJSON('us_highways').addTo(map);
+            //states
+            L.geoJSON(states).addTo(map);
+          
+            //cities
+            L.geoJSON(us_cities).addTo(map);
+           
+            //highways
+            L.geoJSON(us_highways).addTo(map);
      
         </script>
     </body>
