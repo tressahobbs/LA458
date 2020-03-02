@@ -11,9 +11,9 @@
    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
    crossorigin=""></script>
         
-        <script src="../geojsonFiles/states/states.geojson"></script>
-        <script src="../geojsonFiles/us_cities/us_cities.geojson"></script>
-        <script src="../geojsonFiles/us_highways.geojson"></script>
+        <script src="../geojsonFiles/states/states.geojson" type="text/javascript"></script>
+        <script src="../geojsonFiles/us_cities/us_cities.geojson" type="text/javascript"></script>
+        <script src="../geojsonFiles/us_highways.geojson" type="text/javascript"></script>
     
        
         <style>
@@ -78,18 +78,26 @@
      </div>
  </div>
         
+        <br>
+        <br>
+        <br>
+        <br>
+        
         <div id='map'></div>
         
         <script>
+    
+
+
             var map = L.map('map').setView([39.8283, -98.5795], 4);
         
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
             id: 'mapbox/streets-v11',
-accessToken:'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazc4Mm8zZDAwNXQ2M2V0Y2xtMXk1c2Q4In0.uX0jerjoicgCDZ4AcEyMxQ'
+            accessToken:'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazc4Mm8zZDAwNXQ2M2V0Y2xtMXk1c2Q4In0.uX0jerjoicgCDZ4AcEyMxQ'
             }).addTo(map);
-            
+
             //states
             L.geoJSON(states).addTo(map);
           
