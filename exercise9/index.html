@@ -1,105 +1,114 @@
 <!DOCTYPE html>
 <html>
-     <head>
-        <meta name="description" content="LA/CRP 458/558 Leaflet starter file -     2020">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-        <title>Exercise 9</title>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-   crossorigin=""></script>
-     
-            <style>
-             .navbar {
-  background-color: #333;
-    overflow: hidden;
-}
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-}
-.dropdown .dropbtn {
-  font-size: 16px;  
-  color: white;
-  background-color: inherit;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 140px;
-}
+<head>
+	
+	<title>Exercise 9</title>
 
-.dropdown-content a {
-  float: none;
-  color: black;
-  text-align: left;
-}
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-                
-                html, body {
-                    height: 100%;
-                    margin: 0;
-                }
-            #map {
-                width: 600px;
-                height: 400px;
-                padding: 6px 8px;
-                font: 14pt/16px Arial, Helvetica, sans-serif;
-                background: white;
-                border-radius: 5px;
-            }
-            
-        </style>
-    </head>
-     <body>
-        <div class="navbar">
-     <a href="../index.html">Home</a>
-     <div class="dropdown">
-         <button class="dropbtn">Dropdown
-             <i class="fa fa-caret-down"></i>
-         </button>
-         <div class="dropdown-content">
-             <a href="../exercise1/index.html">Exercise 1</a>
-             <a href="../exercise2/index.html">Exercise 2</a>
-             <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
-             <a href="../exercise4/index.html">Exercise 4</a>
-             <a href="../assignment1/index.html">Assignment 1</a>
-             <a href="../exercise5/index.html">Exercise 5</a>
-             <a href="../exercise6/index.html">Exercise 6</a>
-             <a href="../exercise7/index.html">Exercise 7</a>
-             <a href="../exercise8/index.html">Exercise 8</a>
-         </div>
-     </div>
- </div>
+	<style>
+		
+        html, body {
+			height: 100%;
+			margin: 0;
+		}
+		
+	    
+        #map { 
+            width: 800px; 
+            height: 500px; }
         
-        
-         <div id="map" style="width: 600px; height: 400px"></div>
-       
-         <script type="text/javascript">
+    </style>
+
+</head>
+
+<body>
+
+<div id='map' class="leaflet-container" style="position: relative;"></div>
+
+<script type="text/javascript" src="../geojson/us-states.js"></script>
+
+<script type="text/javascript">
+
+var map = L.map('map').setView([37.8, -96], 4);
+
     
-            var map = L.map(map).setView([37.8, -96], 4);
-             
-
-         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
             id: 'mapbox/streets-v11',
-            accessToken:'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazdhb3YwdTgxNjlzM2V0ZnR6NHNkazcwIn0.WVYTFK32EocERM3viqwa6Q'
-            }).addTo(map);
-             
-            
-             
+            // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
+            accessToken: 'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazdhb3YwdTgxNjlzM2V0ZnR6NHNkazcwIn0.WVYTFK32EocERM3viqwa6Q'
+        }).addTo(map);
 
-    </body>
+	// get color depending on population density value
+	function getColor(d) {
+		return d > 1000 ? '#253494' :
+				d > 500  ? '#2c7fb8' :
+				d > 200  ? '#41b6c4' :
+				d > 100   ? '#7fcdbb' :
+				d > 50   ? '#c7e9b4' :
+							'#ffffcc';
+	}
+
+	function style(feature) {
+		return {
+			weight: 1,
+			opacity: 1,
+			color: 'white',
+			fillOpacity: 0.7,
+			fillColor: getColor(feature.properties.density)
+		};
+	}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+
+		layer.setStyle({
+			weight: 2,
+			color: 'black',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+
+	geojson = L.geoJson(statesData, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).addTo(map);
+
+	map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+
+   
+</script>
+
+</body>
 </html>
