@@ -200,11 +200,13 @@ L.geoJson(states).addTo(map);
 
 
 var baseLayers = {
-  "Choropleth - Population Density": geojson,
-  "Major US Cities": cities,
   "stamenMap": stamenMap
 };
-L.control.layers(null,baseLayers).addTo(map);
+var overlays = {
+	"Choropleth - Population Density": geojson,
+	"Major US Cities": cities
+};
+L.control.layers(null,baseLayers, overlays).addTo(map);
 
    
 </script>
