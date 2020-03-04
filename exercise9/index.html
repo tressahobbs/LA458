@@ -110,11 +110,10 @@ L.geoJson(states).addTo(map);
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
             id: 'mapbox/streets-v11',
-            // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
             accessToken: 'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazdhb3YwdTgxNjlzM2V0ZnR6NHNkazcwIn0.WVYTFK32EocERM3viqwa6Q'
         }).addTo(map);
 
-	// get color depending on population density value
+	// get color
 	function getColor(d) {
     return d > 1000 ? '#800026' :
            d > 500  ? '#BD0026' :
