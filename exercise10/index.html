@@ -59,6 +59,32 @@
             width: 800px; 
             height: 500px; }
         
+        .legend {
+            line-height: 10px;
+            color: #555;
+        }
+        
+        .legend i {
+            width: 18px;
+            height: 20px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.9;
+        }
+        
+        .info{
+            padding: 6px 8px;
+            font: 10px/20px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
     </style>
 
 </head>
@@ -199,7 +225,6 @@ L.geoJson(states).addTo(map);
 });
 
 
-
 var baseLayers = {
   "Choropleth - Population Density": geojson,
   "Major US Cities": cities,
@@ -207,6 +232,12 @@ var baseLayers = {
 };
 L.control.layers(null,baseLayers).addTo(map);
 
+    //add legend
+    var legend = L.control({
+        position: 'bottomright'
+    });
+    
+    
    
 </script>
 
