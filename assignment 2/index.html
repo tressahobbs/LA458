@@ -79,15 +79,18 @@
             text-align: center;
         }
 		
-        img {
+        #map { 
+            width: 1000px; 
+            height: 700px; 
+            margin-left: auto;
+            margin-right: auto;}
+        
+      img {
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
         
-        #map { 
-            width: 800px; 
-            height: 500px; }
         
     </style>
 
@@ -126,17 +129,15 @@
     
 <h2>Confirmed Cases of COVID-19 (Novel Coronavirus) in the United States of America</h2>    
     
-    <img src="images/precautions.jpg" alt="Health precautions to take to avoid contracting COVID-19" style="width:800px; height:600px;">
-    
 <br>
 <br>
 <br>    
 <br>
-<br>    
 
 <div id='map' class="leaflet-container" style="position: relative"></div>
 
-
+ <img src="images/precautions.jpg" alt="Health precautions to take to avoid contracting COVID-19" style="width:800px; height:600px;">
+    
 <script>
 
 	var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
