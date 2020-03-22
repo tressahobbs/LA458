@@ -21,6 +21,7 @@
 			margin: 0;
 		}
         
+        /* style for header */
         .header {
             background-color: #333;
             text-align: center;
@@ -28,6 +29,7 @@
             color: #F1F1F1;
         }
         
+        /* style for the nav bar */
 		 .navbar {
 			background-color: #787878;
 			overflow: hidden;
@@ -70,6 +72,7 @@
 			display: block;
 		}
         
+        /* style for header at the top of the page */
         h2 {
             display: block;
             font-weight: bold;
@@ -77,17 +80,21 @@
             text-align: center;
         }
 		
+        /* style for header at the top of the map */
         h4 {
             display: block;
             font-family: "Times New Roman", serif;
             text-align: center;
         }
+        
+        /* style for map */
         #map { 
             width: 1000px; 
             height: 700px; 
             margin-left: auto;
             margin-right: auto;}
         
+        /* style for narrative */
         p {
             display: block;
             font-family: "Times New Roman", serif;
@@ -96,13 +103,19 @@
             margin-left: auto;
         }
         
+        /* style for image */
       img {
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
         
-        
+        /* style for the footer */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -155,6 +168,9 @@
     <!-- bringing in the health precautions image from the file -->
  <img src="images/precautions.jpg" alt="Health precautions to take to avoid contracting COVID-19" style="width:800px; height:600px;">
     
+    <div class="footer">
+        <p>Put Data Citations Here</p>
+    </div>
 <script>
 
 	var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
