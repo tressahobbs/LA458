@@ -22,32 +22,46 @@
 			height: 100%;
 			margin: 0;
 		}
+        
+        .header {
+            background-color: #333;
+            text-align: center;
+            padding: 18px;
+            color: #F1F1F1;
+        }
+        
 		 .navbar {
-			background-color: #333;
+			background-color: #787878;
 			overflow: hidden;
 			}
 		.navbar a {
 			float: left;
-			font-size: 16px;
+			font-size: 18px;
 			color: white;
 			text-align: center;
+            padding: 14px 16px;
+            font-family: "Times New Roman", serif;
 		}
 		.dropdown .dropbtn {
-			font-size: 16px;  
+			font-size: 18px;  
 			color: white;
 			background-color: inherit;
+            text-align: center;
+            padding: 14px 16px;
+            font-family: "Times New Roman", serif;
 		}
 		.dropdown-content {
 			display: none;
 			position: absolute;
 			background-color: #f9f9f9;
 			min-width: 140px;
+            text-align: center;
 		}
 
 		.dropdown-content a {
 			float: none;
 			color: black;
-			text-align: left;
+			text-align: center;
 		}
 
 		.dropdown-content a:hover {
@@ -67,6 +81,11 @@
 </head>
 
 <body>
+    
+<div class="header">
+    <h1>LA 458 Assignment 2</h1>
+    </div>    
+    
 <div class="navbar">
      <a href="../index.html">Home</a>
      <div class="dropdown">
@@ -93,9 +112,10 @@
 <br>
 <br>
 <br>    
+<br>
+<br>    
 
-<div id='map' class="leaflet-container" style="position: relative;"></div>
-
+<div id='map' class="leaflet-container" style="position: relative"></div>
 
 
 <script>
