@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
     <head>
 	
 	<title>Corona Virus Map</title>
@@ -98,14 +98,15 @@
             margin-right: auto;}
         
         /* style for narrative */
-        p {
+        p.blocktext {
             display: block;
             position:relative;
             font-family: "Times New Roman", serif;
             text-align: center;
-            margin-right: auto;
             margin-left: auto;
-
+            margin-right: auto;
+            width:62em;
+            font-size: 16px;
         }
         
         /* style for image */
@@ -137,7 +138,7 @@
         }
         .iowa-btn {
             position: absolute;
-            left: 23%;
+            left: 20%;
             padding: 32px 127px;}
         .case-btn{
             position: absolute;
@@ -149,7 +150,7 @@
             padding:32px 140px}
         .button-case{
            position:relative;
-           right:50px;
+           right:55px;
            padding-bottom:100px;
 
         }
@@ -223,21 +224,22 @@
     
     <!-- creating heading for the top of the map -->
 <h4>This map shows the number of confirmed cases of COVID-19 in each state as well as the confirmed deaths from the virus and their locations.</h4>    
+    
 <div id='map' class="leaflet-container" style="position: relative;"></div>
 
-
+<br>
    
 <!-- Buttons For Zoom-->
 <div class='button-case'>
 <button class="iowa-btn" type="button" onclick="iowa()">Locate Iowa</button>
 <button class="case-btn" type="button" onclick="highestCase()">Locate the Highest Confirmed Cases</button>
-<button class="zoom-btn" type="button" onclick="highestCase()">Zoom In</button>
+<button class="zoom-btn" type="button" onclick="highestCase()">Zoom to Iowa</button>
 </div>
     <br>
     <br>
     
     <!-- creating narrative -->
-    <p>This map project focuses on displaying COVID-19 case data on a per-state basis as a choropleth map as of <b>March 10th, 2020</b>. In addition to this layer, a vector point layer identifying the confirmed cases of COVID-19 as of <b>March 10th, 2020</b> is also present. Finally, a heatmap showing the concentration of confirmed COVID-19 cases is also avaliable when the choropleth map, state boundaries, and confirmed cases layers are turned off. This project makes use of data from the Johns Hopkins Center for Systems Science and Engineering and the World Health Organizations. </p>
+    <p class="blocktext">This mapping project focuses on displaying COVID-19 case data on a per-state basis as a choropleth map as of <b>March 10th, 2020</b>. In addition to this layer, a vector point layer identifying the confirmed cases of COVID-19 as of <b>March 10th, 2020</b> is also present. Finally, a heatmap showing the concentration of confirmed COVID-19 cases is also avaliable when the choropleth map, state boundaries, and confirmed cases layers are turned off. This project makes use of data from the Johns Hopkins Center for Systems Science and Engineering and the World Health Organizations. To help prevent the spread of COVID-19 wash your hands with soap and water for at least 20 seconds, cover your nose and mouth when sneezing or coughing, practice social distancing, and avoid touching your eyes, nose, and mouth. If you feel unwell or are exhibiting the symptoms of COVID-19 please stay home and self-isolate or seek professional medical help.</p>
 
     <!-- bringing in the health precautions image from the file -->
  <img src="images/precautions.jpg" alt="Health precautions to take to avoid contracting COVID-19" style="width:800px; height:600px;">
