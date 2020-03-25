@@ -121,6 +121,8 @@
             padding: 10px;
             text-align: center;
         }
+        
+        /* style for buttons */
         .button {
             background-color: #4CAF50; /* Green */
             left:30%;
@@ -216,17 +218,20 @@
 
    
 <!-- Buttons For Zoom-->
-<button class="iowa-btn" type="button" onclick="iowa()">Iowa</button>
-<button class="case-btn" type="button" onclick="highestCase()">Highest Confirmed Cases</button>
+<button class="iowa-btn" type="button" onclick="iowa()">Zoom to Iowa</button>
+<button class="case-btn" type="button" onclick="highestCase()">Zoom to the Highest Confirmed Cases</button>
+    
+    <br>
+    <br>
     
     <!-- creating narrative -->
-    <p>This map project focuses on displaying COVID-19 case data on a per-state basis as a choropleth map. In addition to this layer, a point layer identifying the locations of cities where deaths from COVID-19 have occured are displayed as a vector point layer. Also, a heatmap of the deaths is also avaliable as a layer. This project makes use of data from... </p>
+    <p>This map project focuses on displaying COVID-19 case data on a per-state basis as a choropleth map as of <b>March 10th, 2020</b>. In addition to this layer, a vector point layer identifying the confirmed cases of COVID-19 as of <b>March 10th, 2020</b> is also present. Finally, a heatmap showing the concentration of confirmed COVID-19 cases is also avaliable when the choropleth map, state boundaries, and confirmed cases layers are turned off. This project makes use of data from the Johns Hopkins Center for Systems Science and Engineering and the World Health Organizations. </p>
 
     <!-- bringing in the health precautions image from the file -->
  <img src="images/precautions.jpg" alt="Health precautions to take to avoid contracting COVID-19" style="width:800px; height:600px;">
     
     <div class="footer">
-        <p>Put Data Citations Here</p>
+        <p>Data taken from the Johns Hopkins Center for Systems Science and Engineering and the World Health Organization.</p>
     </div>
 <script>
     
@@ -268,7 +273,6 @@ var blue_over = L.geoJson(coronaStates);
 }
 
 
-    
     
 	function style(feature) {
 		return {
