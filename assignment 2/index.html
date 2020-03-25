@@ -165,6 +165,7 @@
     opacity: 0.7;
 }
 
+
     </style>
 
 </head>
@@ -322,7 +323,7 @@ L.geoJson(coronaStates).addTo(map);
 	var geojson = L.geoJson(coronaStates, {
 		style: style,
 		onEachFeature: onEachFeature
-	});
+	}).addTo(map);
 
 
     var info = L.control();
@@ -396,6 +397,23 @@ var stamenMap = L.tileLayer(stamenURL, {
 });
 
 
+$.getJSON("https://raw.githubusercontent.com/tressahobbs/LA458/master/assignment%202/geojsonFilesAssignmentTwo/heatmapcorona.geojson", function(data) {
+    var coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
+    var heat = L.heatLayer(coords, {
+        minOpacity: 0.3, //the minimum opacity the heat will start at
+        maxZoom: 19, //zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
+        max: 1.0, //maximum point intensity, 1.0 by default
+        radius: 25, //radius of each "point" of the heatmap, 25 by default
+        blur: 15, //amount of blur, 15 by default
+        gradient: {
+          0.2: 'green',
+          0.65: 'yellow',
+          1: 'red'
+        }
+    }).addTo(map)
+});
+
+
 
 //Base layers definition and addition
 var baseLayers = {
@@ -421,7 +439,7 @@ map.on('overlayremove', function (eventLayer) {
 map.on('overlayadd', function (eventLayer) {
     console.log(eventLayer.name + " on");
 	if (eventLayer.name == "Choropleth - Confirmed Cases") {
-		 legend1.addTo(this);
+		 legend.addTo(this);
 	}	
 });
 
@@ -446,21 +464,7 @@ map.on('overlayadd', function (eventLayer) {
 
     
 
-    $.getJSON("https://raw.githubusercontent.com/tressahobbs/LA458/master/assignment%202/geojsonFilesAssignmentTwo/heatmapcorona.geojson", function(data) {
-    var coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
-    var heat = L.heatLayer(coords, {
-        minOpacity: 0.3, //the minimum opacity the heat will start at
-        maxZoom: 19, //zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
-        max: 1.0, //maximum point intensity, 1.0 by default
-        radius: 25, //radius of each "point" of the heatmap, 25 by default
-        blur: 15, //amount of blur, 15 by default
-        gradient: {
-          0.2: 'green',
-          0.65: 'yellow',
-          1: 'red'
-        }
-    }).addTo(map)
-});
+ 
 
 
 
