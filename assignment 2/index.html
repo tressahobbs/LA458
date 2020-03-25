@@ -227,9 +227,17 @@
         <p>Put Data Citations Here</p>
     </div>
 <script>
+    
+    //OSM tiles attribution and URL
+var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib = '&copy; ' + osmLink;
 
-	var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
+
+//Stamen Toner tiles attribution and URL
+var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
 var stamenAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+       
        
 
 var map = L.map('map').setView([37.8, -96], 4);
@@ -374,9 +382,11 @@ legend.addTo(map);
 		}
 });
 
-
-
-	var stamenMap = L.tileLayer(stamenURL, {
+//Creation of map tiles
+var osmMap = L.tileLayer(osmURL, {
+    attribution: osmAttrib
+});
+var stamenMap = L.tileLayer(stamenURL, {
     attribution: stamenAttrib,
     subdomains: 'abcd',
     minZoom: 0,
@@ -386,15 +396,16 @@ legend.addTo(map);
 
 
 
-
-
+//Base layers definition and addition
 var baseLayers = {
-  "Choropleth - Confirmed Cases": geojson,
-  "stamenMap": stamenMap,
+    "OSM Mapnik": osmMap,
+    "Stamen Toner": stamenMap
 };
 
+
 var overlayMaps = {
-    "Confirmed Cases": confirmed
+    "Confirmed Cases": confirmed,
+    "Choropleth - Confirmed Cases": geojson,
 
 };
 L.control.layers(baseLayers,overlayMaps).addTo(map);
@@ -417,7 +428,7 @@ L.control.layers(baseLayers,overlayMaps).addTo(map);
 
 
 
-    var heat = $.getJSON("https://raw.githubusercontent.com/johnnypr/Corona-Virus-Map/master/project1/datasets/confirmed_cases.geojson", function(data) {
+    var heat = $.getJSON("https://raw.githubusercontent.com/tressahobbs/LA458/master/assignment%202/geojsonFilesAssignmentTwo/confirmed_cases.geojson", function(data) {
     var coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
     var heat = L.heatLayer(coords, {
         minOpacity: 0.3, //the minimum opacity the heat will start at
