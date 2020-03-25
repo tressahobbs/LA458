@@ -245,12 +245,13 @@ var map = L.map('map').setView([37.8, -96], 4);
 
 L.geoJson(coronaStates).addTo(map);
     
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            accessToken: 'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazdhb3YwdTgxNjlzM2V0ZnR6NHNkazcwIn0.WVYTFK32EocERM3viqwa6Q'
-        }).addTo(map);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        accessToken: 'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazdhb3YwdTgxNjlzM2V0ZnR6NHNkazcwIn0.WVYTFK32EocERM3viqwa6Q',
+
+    }).addTo(map);
 
 	// get color
 	function getColor(d) {
@@ -410,6 +411,22 @@ var overlayMaps = {
 };
 L.control.layers(baseLayers,overlayMaps).addTo(map);
 
+map.on('overlayremove', function (eventLayer) {
+	console.log(eventLayer.name  + " off");
+	if (eventLayer.name == "Choropleth - Confirmed Cases") {
+		this.removeControl(legend);
+	}
+});
+
+map.on('overlayadd', function (eventLayer) {
+    console.log(eventLayer.name + " on");
+	if (eventLayer.name == "Choropleth - Confirmed Cases") {
+		 legend1.addTo(this);
+	}	
+});
+
+
+
 
     function zoomOut() {
         map.setZoom(9);
@@ -427,8 +444,9 @@ L.control.layers(baseLayers,overlayMaps).addTo(map);
     };
 
 
+    
 
-    var heat = $.getJSON("https://raw.githubusercontent.com/tressahobbs/LA458/master/assignment%202/geojsonFilesAssignmentTwo/confirmed_cases.geojson", function(data) {
+    $.getJSON("https://raw.githubusercontent.com/tressahobbs/LA458/master/assignment%202/geojsonFilesAssignmentTwo/heatmapcorona.geojson", function(data) {
     var coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
     var heat = L.heatLayer(coords, {
         minOpacity: 0.3, //the minimum opacity the heat will start at
