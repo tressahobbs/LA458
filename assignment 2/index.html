@@ -166,6 +166,7 @@
 }
 
 
+
     </style>
 
 </head>
@@ -244,7 +245,7 @@ var stamenAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, 
 var map = L.map('map').setView([37.8, -96], 4);
 
 
-L.geoJson(coronaStates).addTo(map);
+var blue_over = L.geoJson(coronaStates);
     
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -336,8 +337,8 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
-        '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
+    this._div.innerHTML = '<h4>Confirmed Cases By State</h4>' +  (props ?
+        '<b>' + props.NAME + '</b><br />' + props.density + ' people'
         : 'Hover over a state');
 };
 
@@ -425,6 +426,7 @@ var baseLayers = {
 var overlayMaps = {
     "Confirmed Cases": confirmed,
     "Choropleth - Confirmed Cases": geojson,
+    "State Borders": blue_over,
 
 };
 L.control.layers(baseLayers,overlayMaps).addTo(map);
