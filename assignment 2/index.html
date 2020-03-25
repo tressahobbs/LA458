@@ -138,11 +138,19 @@
         .iowa-btn {
             position: relative;
             left: 30%;
-            padding: 32px 180px;}
+            padding: 32px 127px;}
         .case-btn{
             position: relative;
             left:30%;
             padding:32px 127px}
+        .zoom-btn{
+            position: relative;
+            left:30%;
+            padding:32px 127px}
+        .button-case{
+            position:relative;
+            right:3%;
+        }
         .info {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
@@ -218,9 +226,11 @@
 
    
 <!-- Buttons For Zoom-->
-<button class="iowa-btn" type="button" onclick="iowa()">Zoom to Iowa</button>
-<button class="case-btn" type="button" onclick="highestCase()">Zoom to the Highest Confirmed Cases</button>
-    
+<div class='button-case'>
+<button class="iowa-btn" type="button" onclick="iowa()">Locate Iowa</button>
+<button class="case-btn" type="button" onclick="highestCase()">Locate the Highest Confirmed Cases</button>
+<button class="zoom-btn" type="button" onclick="highestCase()">Zoom In</button>
+</div>
     <br>
     <br>
     
