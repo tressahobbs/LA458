@@ -11,52 +11,95 @@
    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
    crossorigin=""></script>
         
-        <script src="project1\datasets\municipalities.geojson" type="text/javascript"></script>
   
   
        
         <style>
-             .navbar {
-  background-color: #333;
-    overflow: hidden;
-}
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-}
-.dropdown .dropbtn {
-  font-size: 16px;  
-  color: white;
-  background-color: inherit;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 140px;
-}
+              html, body {
+			height: 100%;
+			margin: 0;
+		}
+        
+        /* style for header */
+        .header {
+            background-color: #333;
+            text-align: center;
+            padding: 18px;
+            color: #F1F1F1;
+        }
+            /* style for the nav bar */
+		 .navbar {
+			background-color: #333;
+			overflow: hidden;
+			}
+		.navbar a {
+			float: left;
+			font-size: 18px;
+			color: white;
+			text-align: center;
+            padding: 14px 16px;
+            font-family: "Times New Roman", serif;
+		}
+		.dropdown .dropbtn {
+			font-size: 18px;  
+			color: white;
+			background-color: inherit;
+            text-align: center;
+            padding: 14px 16px;
+            font-family: "Times New Roman", serif;
+		}
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 140px;
+            text-align: center;
+		}
 
-.dropdown-content a {
-  float: none;
-  color: black;
-  text-align: left;
-}
+		.dropdown-content a {
+			float: none;
+			color: black;
+			text-align: center;
+		}
 
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
+		.dropdown-content a:hover {
+			background-color: #ddd;
+		}
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
             #map {
+                position: relative;
+                top:50px;
                 width: 700px;
                 height: 500px;
             }
         </style>
     </head>
+    <div class="navbar">
+     <a href="../index.html">Home</a>
+     <div class="dropdown">
+         <button class="dropbtn">Dropdown
+             <i class="fa fa-caret-down"></i>
+         </button>
+         <div class="dropdown-content">
+             <a href="../exercise1/index.html">Exercise 1</a>
+             <a href="../exercise2/index.html">Exercise 2</a>
+             <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
+             <a href="../exercise4/index.html">Exercise 4</a>
+             <a href="../assignment1/index.html">Assignment 1</a>
+             <a href="../exercise5/index.html">Exercise 5</a>
+             <a href="../exercise6/index.html">Exercise 6</a>
+             <a href="../exercise7/index.html">Exercise 7</a>
+			 <a href="../exercise8/index.html">Exercise 8</a>
+             <a href="../exercise9/index.html">Exercise 9</a>
+             <a href="../exercise10/index.html">Exercise 10</a>
+             <a href="../assignment%25202/index.html">Assignment 2</a>
+
+         </div>
+     </div>
+ </div>
 
         
         <div id='map'></div>
