@@ -12,8 +12,6 @@
    crossorigin=""></script>
         
   
-  
-       
         <style>
               html, body {
 			height: 100%;
@@ -77,6 +75,7 @@
             }
         </style>
     </head>
+    <body>
     <div class="navbar">
      <a href="../index.html">Home</a>
      <div class="dropdown">
@@ -98,6 +97,7 @@
              <a href="../exercise11/index.html">Exercise 10</a>
              <a href="../exercise12/index.html">Exercise 10</a>
              <a href="../assignment%25202/index.html">Assignment 2</a>
+             <a href="../exercise11/index.html">Exercise 11</a>
 
          </div>
      </div>
@@ -105,18 +105,17 @@
 
         
         <div id='map'></div>
+    <p>The style template I started with was the dark basic one with galaxy styling. The changes that I made in the style template that I started with was change the style template so that the hospital in Ames appears as a red polygon, the schools in Ames appear in purple, and the parks appear in a dark green. The buildings shown in the map extent will have apartment numbers if the information is avaliable. The data all came from </p>
         
         <script>
 
     var map = L.map('map').setView([42.0266, -93.6465], 13);
-   
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/thobbs1380/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'ck8rn98df07yk1insg7io8z34',
-    // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
     accessToken: 'pk.eyJ1IjoidGhvYmJzMTM4MCIsImEiOiJjazZwOW4zMXAxazBlM2twdXowYno2M2FvIn0.133Fu1oRPYXOCJdwV_44cw' 
 }).addTo(map);
 
