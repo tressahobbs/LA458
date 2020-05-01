@@ -1,6 +1,39 @@
-<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+
+      <!-- Leaflet 0.5: https://github.com/CloudMade/Leaflet-->
+		<link rel="stylesheet" href="./lib/leaflet.css" />
+		<!--[if lte IE 8]> <link rel="stylesheet" href="../../lib/leaflet.ie.css" />  <![endif]-->  
+        <script src="./lib/leaflet.js"></script>
+
+
+	
+
+		<!-- GeoCSV: https://github.com/joker-x/Leaflet.geoCSV -->
+		<script src="leaflet.geocsv-src.js"></script>
+
+		<!-- jQuery 1.8.3: http://jquery.com/ -->
+        <script src="./lib/jquery.js"></script>
+        
+
+        <!--Ajax-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+        <!--Search Bar -->
+        <script src="./dist/leaflet.customsearchbox.min.js"></script>
+        <link href="./dist/searchbox.min.css" rel="stylesheet" />
+
+       
+    
+        
+
+
+        
+
+
+
+
+
         <style>
              html, body {
 			height: 100%;
@@ -56,6 +89,60 @@
 		.dropdown:hover .dropdown-content {
 			display: block;
 		}
+        #map {
+                position: relative;
+                top:50px;
+                width: 900px;
+                height: 600px;
+                left:800px;
+
+            }
+        .search-input {
+        font-family:Courier
+        }
+        .search-input,
+        .leaflet-control-search {
+            max-width:400px;
+        }
+        
+        .jhu-btn {
+            background-color: #4CAF50; /* Green */
+            position: inherit;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            padding: 32px 127px;
+            position: relative;
+            left:42%;
+            top: 300%;
+        }
+        .burglary-btn {
+            background-color: #4CAF50; /* Green */
+            position: inherit;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            padding: 32px 127px;
+            position: relative;
+            left:42%;
+            top: 300%;
+        }
+        .refresh-btn {
+            background-color: #4CAF50; /* Green */
+            position: inherit;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            padding: 32px 127px;
+            position: relative;
+            left:42%;
+            top: 300%;
+        }
+
+        
         </style>
     </head>
     <body>
@@ -90,9 +177,191 @@
          </div>
      </div>
  </div> 
+
+
+        <div id='map'> </div>
+        <br>
+        <br>
+        <br>
+        <div class='btn-holder'>
+        <button class="jhu-btn" type="button" onclick="JHU()">Find JHU Campus</button>
+        <button class="burglary-btn" type="button" onclick="findBurglaries()">Show Burglaries</button>
+        <button class="refresh-btn" type="button" onclick="refreshPage()">Refresh Page</button>
+        </div>
+
+
         
-        <br>
-        <br>
+        <script>
+            $.ajaxPrefilter( 'script', function( options ) {
+                    options.crossDomain = true;
+                });
+
+
+
+            var map = L.map('map',{attributionControl:false}).setView([39.2904, -76.6122], 13);
+
+            map.zoomControl.setPosition('topright');
+            var searchboxControl=createSearchboxControl();
+            
+            var filtered_csv = {};
+            L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	        maxZoom: 18
+            }).addTo(map);
+            
+            var crime_csv = {};
+            var csv = null;
+                $.ajax({
+                    type: "GET",
+                    url: "recent_crime.csv",
+                    success: function(data) {
+                            crime_csv = L.geoCsv(null,{
+                                titles: ['CrimeCode','Location','popup','Inside_Outside','Weapon','Post','District','Neighborhood','lng','lat','Location_1','Premise','vri_name1','Total_Incidents'],
+                                fieldSeparator: ',',
+                                lineSeparator: '\n',
+                                firstLineTitles: false,
+                                onEachFeature: function (feature, layer) {
+                                    var popup = '';
+                                    for (var clave in feature.properties) {
+                                        var title = crime_csv.getPropertyTitle(clave);
+                                        popup += '<b>'+title+'</b><br />'+feature.properties[clave]+'<br /><br />';
+                                    }
+                                    layer.bindPopup(popup);
+                                }
+                            });
+                            crime_csv.addData(data);
+                            map.addLayer(crime_csv)
+                            csv = data;
+                        },
+                    error: function (request, status, error) {
+                        alert(request.responseText + 'failed or is being blocked by your browser, please allow your browser to access local files');
+                    }
+                });
+
+            var blueMarker = {
+                radius: 8,
+                fillColor: "#0000ff"
+            };
+
+            var redMarker = {
+                radius: 8,
+                fillColor: "#ff0000"
+            }
+
+
+        var searchboxControl=createSearchboxControl();
+        var control = new searchboxControl({
+            sidebarTitleText: 'Links',
+            sidebarMenuItems: {
+                Items: [
+                    { type: "link", name: "City of Baltimore", href: "https://www.baltimorecity.gov/", icon: "icon-local-carwash" },
+                ]
+            }
+        });
+        control._searchfunctionCallBack = function (searchkeywords)
+        {
+            if (!searchkeywords) {
+                searchkeywords = "The search call back is clicked !!"
+            }
+            searchkeywords = searchkeywords.toUpperCase()
+            
+            map.removeLayer(crime_csv)
+
+            var filtered_csv = L.geoCsv(csv,{
+                                titles: ['CrimeCode','Location','popup','Inside_Outside','Weapon','Post','District','Neighborhood','lng','lat','Location_1','Premise','vri_name1','Total_Incidents'],
+                                fieldSeparator: ',',
+                                lineSeparator: '\n',
+                                firstLineTitles: false,
+                                filter: searchFilter,
+                                onEachFeature: function (feature, layer) {
+                                    var popup = '';
+                                    for (var clave in feature.properties) {
+                                        var title = crime_csv.getPropertyTitle(clave);
+                                        popup += '<b>'+title+'</b><br />'+feature.properties[clave]+'<br /><br />';
+                                    }
+                                    layer.bindPopup(popup);
+                                }
+                            });
+        
+            function searchFilter(feature) {
+                if (feature.properties.popup.includes(searchkeywords)){
+                    return true
+                } 
+            }
+            
+
+            map.addLayer(filtered_csv);
+
+        }
+        map.addControl(control);
+
+    
+    
+
+    function button2_click()
+    {
+        alert('button 2 clicked !!!');
+    }
+    
+    function findBurglaries(){
+        if (map.hasLayer(crime_csv)){
+            map.removeLayer(crime_csv)
+        }
+        if (map.hasLayer(filtered_csv)){
+            map.removeLayer(filtered_csv)
+        }
+
+        var burglaries =  L.geoCsv(csv,{
+                                titles: ['CrimeCode','Location','popup','Inside_Outside','Weapon','Post','District','Neighborhood','lng','lat','Location_1','Premise','vri_name1','Total_Incidents'],
+                                fieldSeparator: ',',
+                                lineSeparator: '\n',
+                                firstLineTitles: false,
+                                pointToLayer: function (feature, latlng) {
+                                    return L.circleMarker(latlng, redMarker);
+                                },
+                                filter: searchFilterB,
+                                onEachFeature: function (feature, layer) {
+                                    var popup = '';
+                                    for (var clave in feature.properties) {
+                                        var title = crime_csv.getPropertyTitle(clave);
+                                        popup += '<b>'+title+'</b><br />'+feature.properties[clave]+'<br /><br />';
+                                    }
+                                    layer.bindPopup(popup);
+                                }
+                            });
+        map.addLayer(burglaries)
+        
+    }         
+   
+
+    function zoomOut() {
+        map.setZoom(9);
+    };
+     function zoomIn() {
+        map.setZoom(7);
+     };
+
+    function JHU() {
+        map.panTo(new L.LatLng(39.3299, -76.6205));
+        map.setZoom(15);
+    };
+   
+    
+    function refreshPage(){
+        location.reload()
+    }
+    
+
+
+        function searchFilterB(feature) {
+                if (feature.properties.popup.includes('BURGLARY')){
+                    return true
+                } 
+            }
+        
+
+        
+
+        </script>
         
     </body>
 </html>
