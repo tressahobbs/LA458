@@ -26,530 +26,587 @@
         <script src="./dist/leaflet.customsearchbox.min.js"></script>
         <link href="./dist/searchbox.min.css" rel="stylesheet" />
 
-       
+<style>
+html,body {
+     height: 100%;
+     margin: 0;
+ }
+
+ .my-legend .legend-title {
+     text-align: left;
+     margin-bottom: 5px;
+     font-weight: bold;
+     font-size: 90%;
+ }
+
+ .my-legend .legend-scale ul {
+     margin: 0;
+     margin-bottom: 5px;
+     padding: 0;
+     float: left;
+     list-style: none;
+ }
+
+ .my-legend .legend-scale ul li {
+     font-size: 80%;
+     list-style: none;
+     margin-left: 0;
+     line-height: 18px;
+     margin-bottom: 2px;
+ }
+
+ .my-legend ul.legend-labels li span {
+     display: block;
+     float: left;
+     height: 16px;
+     width: 30px;
+     margin-right: 5px;
+     margin-left: 0;
+     border: 1px solid #999;
+ }
+
+ .my-legend .legend-source {
+     font-size: 70%;
+     color: #999;
+     clear: both;
+ }
+
+ .my-legend a {
+     color: #777;
+ }
+
+ /* style for header */
+ .header {
+     background-color: #333;
+     text-align: center;
+     padding: 18px;
+     color: #F1F1F1;
+ }
+
+ /* style for the nav bar */
+ .navbar {
+     background-color: #333;
+     overflow: hidden;
+ }
+
+ .navbar a {
+     float: left;
+     font-size: 18px;
+     color: white;
+     text-align: center;
+     padding: 14px 16px;
+     font-family: "Times New Roman", serif;
+ }
+
+ .dropdown .dropbtn {
+     font-size: 18px;
+     color: white;
+     background-color: inherit;
+     text-align: center;
+     padding: 14px 16px;
+     font-family: "Times New Roman", serif;
+ }
+
+ .dropdown-content {
+     display: none;
+     position: absolute;
+     background-color: #f9f9f9;
+     min-width: 140px;
+     text-align: center;
+ }
+
+ .dropdown-content a {
+     float: none;
+     color: black;
+     text-align: center;
+ }
+
+ .dropdown-content a:hover {
+     background-color: #ddd;
+ }
+
+ .dropdown:hover .dropdown-content {
+     display: block;
+ }
+
+ #map {
+     width: 1000px;
+     height: 700px;
+     margin-left: auto;
+     margin-right: auto;
+ }
+ }
+
+ .search-input {
+     font-family: Courier
+ }
+
+ .search-input,
+ .leaflet-control-search {
+     max-width: 400px;
+ }
+
+ /* style for buttons */
+
+ .jhu-btn {
+     background-color: #2b8cbe;
+     /* medium blue*/
+     position: inherit;
+     color: white;
+     text-align: center;
+     font-size: 16px;
+     margin: 4px 2px;
+     padding: 32px 127px;
+     position: relative;
+     left: 10%;
+     top: 300%;
+     float: left;
+ }
+
+ .burglary-btn {
+     background-color: #2b8cbe;
+     /* medium blue */
+     position: inherit;
+     color: white;
+     text-align: center;
+     font-size: 16px;
+     margin: 4px 2px;
+     padding: 32px 127px;
+     position: relative;
+     left: 12.5%;
+     top: 300%;
+     float: left;
+ }
+
+ .refresh-btn {
+     background-color: #2b8cbe;
+     /* medium blue */
+     position: inherit;
+     color: white;
+     text-align: center;
+     font-size: 16px;
+     margin: 4px 2px;
+     padding: 32px 127px;
+     position: relative;
+     left: 15%;
+     top: 300%;
+     float: left;
+ }
+
+ .stamen-btn {
+     background-color: #2b8cbe;
+     /* medium blue */
+     position: inherit;
+     color: white;
+     text-align: center;
+     font-size: 16px;
+     margin: 4px 2px;
+     padding: 32px 127px;
+     position: relative;
+     left: 15%;
+     top: 300%;
+     float: left;
+ }
+
+ article {
+     margin-left: auto;
+     margin-right: auto;
+     padding: 20px;
+     width: 70%;
+     background-color: #f1f1f1;
+     height: 420px;
+     margin-bottom: 20px;
+ }
+
+ h1 {
+     display: block;
+     font-weight: bold;
+     font-family: "Times New Roman", serif;
+     text-align: center;
+     font-size: 36pt
+ }
+
+ h2 {
+     display: block;
+     font-weight: bold;
+     font-family: "Times New Roman", serif;
+     text-align: inherit;
+     font-size: 24pt;
+ }
+
+ p {
+     display: block;
+     font-family: "Times New Roman", serif;
+     text-align: inherit;
+     font-size: 14pt;
+
+ }
+
+ .footer {
+     background-color: #f1f1f1;
+     padding: 10px;
+     text-align: center;
+ }
+
+ </style>
+        
+</head>
     
-        
+<body>
+ <!-- creating header -->
+         <div class="header">
+             <h1>Crime Distribution in Baltimore</h1>
+         </div>
 
+         <!-- creating navbar -->
+         <div class="navbar">
+             <a href="../index.html">Home</a>
+             <div class="dropdown">
+                 <button class="dropbtn">Dropdown
+                     <i class="fa fa-caret-down"></i>
+                 </button>
+                 <div class="dropdown-content">
+                     <a href="../exercise1/index.html">Exercise 1</a>
+                     <a href="../exercise2/index.html">Exercise 2</a>
+                     <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
+                     <a href="../exercise4/index.html">Exercise 4</a>
+                     <a href="../assignment1/index.html">Assignment 1</a>
+                     <a href="../exercise5/index.html">Exercise 5</a>
+                     <a href="../exercise6/index.html">Exercise 6</a>
+                     <a href="../exercise7/index.html">Exercise 7</a>
+                     <a href="../exercise8/index.html">Exercise 8</a>
+                     <a href="../exercise9/index.html">Exercise 9</a>
+                     <a href="../exercise10/index.html">Exercise 10</a>
+                     <a href="../assignment%25202/index.html">Assignment 2</a>
+                     <a href="../exercise11/index.html">Exercise 11</a>
+                     <a href="../exercise12/index.html">Exercise 12</a>
 
-        
+                 </div>
+             </div>
+         </div>
 
+         <br>
+         <br>
+         <br>
+         <article>
+             <h2>Crime Distribution History and Map Info</h2>
+             <br>
+             <p>Baltimore, Maryland is infamously known for its significantly high crime rate, including an average violent crime rate that is high above the national average. In the past few years, violent crimes have been increasing in Baltimore and other large cities such as Washington D.C. and Chicago. Gang-related crimes are usually found clustered in drug territories. One of the most affected neighborhoods in Baltimore is the Sandtown-Winchester neighborhood in west Baltimore. This map shows a randomized selection of 100 reported crimes within the city of Baltimore. The original dataset used for this project contains 299,767 reported crimes ranging from the years 1963 to 2020, however, in an effort to optimize the speed of the leaflet map the number of crimes displayed was reduced. A link to the Baltimore City website where the data was obtained can be accessed under the link tab by the search bar. </p>
+             <br>
+             <p>Using the search bar, you are able to see the distribution of specific types of offenses by searching their terms and clicking the search button. The three included within the randomized sample used for this map are assault (both common and aggravated), auto theft, larceny (larceny and larceny from auto), and burglary. Each crime type is color coded on the map with circle markers and can be seen in the accompanying legend. Each circle marker displays a popup when clicked that shows the street address where the crime occurred, the type of crime, if a weapon was involved, which district and neighborhood it occurred in, the total number of incidents in that location, and if it occurred in a car, commercial business, residential home, or on the street. Three buttons found at the bottom of the map are also helpful in locating the Johns Hopkins University (JHU) campus, quickly seeing the location of burglaries (the most common type of crime reported), and a refresh button. Happy exploring!</p>
 
+         </article>
+         <br>
+         <div class='my-legend'>
+             <div class='legend-title'>TYPES OF CRIME</div>
+             <div class='legend-scale'>
+                 <ul class='legend-labels'>
+                     <li><span style='background:#D7191C;'></span>BURGLARY</li>
+                     <li><span style='background:#FDAE61;'></span>LARCENY</li>
+                     <li><span style='background:#2C7BB6;'></span>ASSAULT</li>
+                     <li><span style='background: #018571'></span>AUTO THEFT</li>
 
-
-
-        <style>
-             html, body {
-			height: 100%;
-			margin: 0;
-        }
-        
-        .my-legend .legend-title {
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 90%;
-    }
-  .my-legend .legend-scale ul {
-    margin: 0;
-    margin-bottom: 5px;
-    padding: 0;
-    float: left;
-    list-style: none;
-    }
-  .my-legend .legend-scale ul li {
-    font-size: 80%;
-    list-style: none;
-    margin-left: 0;
-    line-height: 18px;
-    margin-bottom: 2px;
-    }
-  .my-legend ul.legend-labels li span {
-    display: block;
-    float: left;
-    height: 16px;
-    width: 30px;
-    margin-right: 5px;
-    margin-left: 0;
-    border: 1px solid #999;
-    }
-  .my-legend .legend-source {
-    font-size: 70%;
-    color: #999;
-    clear: both;
-    }
-  .my-legend a {
-    color: #777;
-    }
-
-        /* style for header */
-        .header {
-            background-color: #333;
-            text-align: center;
-            padding: 18px;
-            color: #F1F1F1;
-        }
-            /* style for the nav bar */
-		 .navbar {
-			background-color: #333;
-			overflow: hidden;
-			}
-		.navbar a {
-			float: left;
-			font-size: 18px;
-			color: white;
-			text-align: center;
-            padding: 14px 16px;
-            font-family: "Times New Roman", serif;
-		}
-		.dropdown .dropbtn {
-			font-size: 18px;  
-			color: white;
-			background-color: inherit;
-            text-align: center;
-            padding: 14px 16px;
-            font-family: "Times New Roman", serif;
-		}
-		.dropdown-content {
-			display: none;
-			position: absolute;
-			background-color: #f9f9f9;
-			min-width: 140px;
-            text-align: center;
-		}
-
-		.dropdown-content a {
-			float: none;
-			color: black;
-			text-align: center;
-		}
-
-		.dropdown-content a:hover {
-			background-color: #ddd;
-		}
-
-		.dropdown:hover .dropdown-content {
-			display: block;
-		}
-        #map {
-            width: 1000px; 
-            height: 700px; 
-            margin-left: auto;
-            margin-right: auto;}
-            
-        .search-input {
-        font-family:Courier
-        }
-        .search-input,
-        .leaflet-control-search {
-            max-width:400px;
-        }
-         /* style for buttons */
-            
-        .jhu-btn {
-            background-color: #2b8cbe; /* medium blue*/
-            position: inherit;
-            color: white;
-            text-align: center;
-            font-size: 16px;
-            margin: 4px 2px;
-            padding: 32px 127px;
-            position: relative;
-            left:10%;
-            top: 300%;
-            float: left;
-        }
-        .burglary-btn {
-            background-color: #2b8cbe; /* medium blue */
-            position: inherit;
-            color: white;
-            text-align: center;
-            font-size: 16px;
-            margin: 4px 2px;
-            padding: 32px 127px;
-            position: relative;
-            left:12.5%;
-            top: 300%;
-            float: left;
-        }
-        .refresh-btn {
-            background-color: #2b8cbe; /* medium blue */
-            position: inherit;
-            color: white;
-            text-align: center;
-            font-size: 16px;
-            margin: 4px 2px;
-            padding: 32px 127px;
-            position: relative;
-            left:15%;
-            top: 300%;
-            float: left;
-            } 
-            
-            
-        h1 {
-            display: block;
-            font-weight: bold;
-            font-family: "Times New Roman", serif;
-            text-align: center;
-            font-size: 36pt
-        }
-        
-            article {
-margin-left: auto;
-            margin-right: auto;
-  padding: 20px;
-  width: 70%;
-  background-color: #f1f1f1;
-                height: 420px;
-                 margin-bottom:10px;
-            }
-            h2 {
-                display: block;
-                font-weight: bold;
-                font-family: "Times New Roman", serif;
-                text-align: inherit;
-                font-size: 24pt;
-            }
-            
-            p {
-                display: block;
-                font-family: "Times New Roman", serif;
-                text-align: inherit;
-                font-size: 14pt;
-                
-            }
-        
-        </style>
-    </head>
-    <body>
-         <!-- creating header -->
-<div class="header">
-    <h1>Crime Distribution in Baltimore</h1>
-    </div>   
-        
-    <!-- creating navbar -->
-    <div class="navbar">
-     <a href="../index.html">Home</a>
-     <div class="dropdown">
-         <button class="dropbtn">Dropdown
-             <i class="fa fa-caret-down"></i>
-         </button>
-         <div class="dropdown-content">
-             <a href="../exercise1/index.html">Exercise 1</a>
-             <a href="../exercise2/index.html">Exercise 2</a>
-             <a href="https://github.com/tressahobbs/LA458/blob/master/exercise3/dams.geojson">Exercise 3</a>
-             <a href="../exercise4/index.html">Exercise 4</a>
-             <a href="../assignment1/index.html">Assignment 1</a>
-             <a href="../exercise5/index.html">Exercise 5</a>
-             <a href="../exercise6/index.html">Exercise 6</a>
-             <a href="../exercise7/index.html">Exercise 7</a>
-			 <a href="../exercise8/index.html">Exercise 8</a>
-             <a href="../exercise9/index.html">Exercise 9</a>
-             <a href="../exercise10/index.html">Exercise 10</a>
-             <a href="../assignment%25202/index.html">Assignment 2</a>
-             <a href="../exercise11/index.html">Exercise 11</a>
-             <a href="../exercise12/index.html">Exercise 12</a>
+                 </ul>
+             </div>
 
          </div>
-     </div>
- </div> 
+         <div id='map'> </div>
+         <br>
+         <br>
+         <br>
+         <div class='btn-holder'>
+             <button class="jhu-btn" type="button" onclick="JHU()">Find JHU Campus</button>
+             <button class="burglary-btn" type="button" onclick="findBurglaries()">Show Burglaries</button>
+             <button class="refresh-btn" type="button" onclick="refreshPage()">Refresh Page</button>
+         </div>
 
-<br>
-<br>
-<br>
-<br>
 
-        <article>
-        <h2>Crime Distribtion History and Map Info</h2>
-            <p>Baltimore, Maryland is infamously known for its significantly high crime rate, including an average violent crime rate that is high above the national average. In the past few years, violent crimes have been increasing in Baltimore and other large cities such as Washington D.C. and Chicago. Gang-related crimes are usually found clustered in drug territories. One of the most affected neighborhoods in Baltimore is the Sandtown-Winchester neighborhood in west Baltimore. This map shows a randomized selection of 100 reported crimes within the city of Baltimore. The original dataset used for this project contains 299,767 reported crimes ranging from the years 1963 to 2020, however, in an effort to optimize the speed of the leaflet map the number of crimes displayed was reduced. A link to the Baltimore City website where the data was obtained can be accessed under the link tab by the search bar. </p>
-            <br>
-            <p>Using the search bar, you are able to see the distribution of specific types of offenses by searching their terms and clicking the search button. The three included within the randomized sample used for this map are assault (both common and aggravated), larceny (larceny and larceny from auto), and burglary. Each crime type is color coded on the map with circle markers and can be seen in the accompanying legend. Each circle marker displays a popup when clicked that shows the street address the crime occurred at, the type of crime, if a weapon was involved, which district and neighborhood it occurred in, the total number of incidents in that location, and if it occurred in a car, commercial business, residential home, or on the street. Three buttons found at the bottom of the map are also helpful in locating the Johns Hopkins University campus, quickly seeing the location of burglaries (the most common type of crime reported), and a refresh button.</p>
-        </article>
-        <br>
-        <br>
-     <div class='my-legend'>
-    <div class='legend-title'>TYPES OF CRIME</div>
-    <div class='legend-scale'>
-      <ul class='legend-labels'>
-        <li><span style='background:#ff0000;'></span>BURGLARY</li>
-        <li><span style='background:#FF8D33;'></span>LARCENY</li>
-        <li><span style='background:#66FF8C;'></span>ASSAULT</li>
-       
-      </ul>
-    </div>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <div class="footer">
+             <p>Sources for this project include Open Baltimore crime data from baltimorecity.gov, Maryland Baltimore City Neighborhoods from Maryland.gov, and Johns Hopkins University. </p>
+         </div>
+         <br>
+         <br>
     
-    </div>
-        <div id='map'> </div>
-        <br>
-        <br>
-        <div class='btn-holder'>
-        <button class="jhu-btn" type="button" onclick="JHU()">Find JHU Campus</button>
-        <button class="burglary-btn" type="button" onclick="findBurglaries()">Show Burglaries</button>
-        <button class="refresh-btn" type="button" onclick="refreshPage()">Refresh Page</button>
-        </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-        
-        <script>
+<script>
+          //OSM tiles attribution and URL
+          var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+          var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+          var osmAttrib = '&copy; ' + osmLink;
+
+          var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
+          var stamenAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+          var zoomNumber = 0;
+
+
+          $.ajaxPrefilter('script', function(options) {
+              options.crossDomain = true;
+          });
 
 
 
+          var map = L.map('map', {
+              attributionControl: false
+          }).setView([39.2904, -76.6122], 13);
 
-            $.ajaxPrefilter( 'script', function( options ) {
-                    options.crossDomain = true;
-                });
+          map.zoomControl.setPosition('topright');
+          var searchboxControl = createSearchboxControl();
 
-                var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
-	            var stamenAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
-                var stamenMap = L.tileLayer(stamenURL, {
-                    attribution: stamenAttrib,
-                    subdomains: 'abcd',
-                    minZoom: 0,
-                    maxZoom: 20,
-                    ext: 'png'
-                });
+          var filtered_csv = {};
+          L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 18
+          }).addTo(map);
+          var markers = L.markerClusterGroup();
+          var greenMarker = {
+              radius: 10,
+              fillColor: "#018571"
+          };
 
-            var map = L.map('map',{attributionControl:false}).setView([39.2904, -76.6122], 13);
+          var redMarker = {
+              radius: 12,
+              fillColor: "#D7191C"
+          }
 
-            map.zoomControl.setPosition('topright');
-            var searchboxControl=createSearchboxControl();
-            
-            var filtered_csv = {};
-            L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	        maxZoom: 18
-            }).addTo(map);
-            var markers = L.markerClusterGroup();
-            var blueMarker = {
-                radius: 10,
-                fillColor: "#FF4500"
-            };
+          var OrangeMarker = {
+              radius: 8,
+              fillColor: "#FDAE61"
+          }
+          var PurpleMarker = {
+              radius: 8,
+              fillColor: "#8000FF"
+          }
+          var darkBlueMarker = {
+              radius: 8,
+              fillColor: "#2C7BB6"
+          }
 
-            var redMarker = {
-                radius: 12,
-                fillColor: "#ff0000"
-            }
+          var crime_csv = {};
+          var csv = null;
+          $.ajax({
+              type: "GET",
+              url: "recent_crime.csv",
+              success: function(data) {
+                  crime_csv = L.geoCsv(null, {
+                      titles: ['CrimeCode', 'Location', 'popup', 'Inside_Outside', 'Weapon', 'Post', 'District', 'Neighborhood', 'lng', 'lat', 'Location_1', 'Premise', 'vri_name1', 'Total_Incidents'],
+                      fieldSeparator: ',',
+                      lineSeparator: '\n',
+                      firstLineTitles: false,
+                      pointToLayer: function(feature, latlng) {
+                          if (feature.properties.popup.includes("LARCENY")) {
+                              return L.circleMarker(latlng, OrangeMarker);
+                          } else if (feature.properties.popup.includes("BURGLARY")) {
+                              return L.circleMarker(latlng, redMarker);
+                          } else if (feature.properties.popup.includes("ASSAULT")) {
+                              return L.circleMarker(latlng, darkBlueMarker);
+                          } else if (feature.properties.popup.includes("AUTO")) {
+                              return L.circleMarker(latlng, greenMarker);
+                          }
+                      },
 
-            var OrangeMarker = {
-                radius: 8,
-                fillColor: "#FF8D33"
-            }
-            var PurpleMarker = {
-                radius: 8,
-                fillColor: "#3374FF"
-            }
-            var greenMarker = {
-                radius: 8,
-                fillColor: "#66FF8C"
-            }
-            
-            var crime_csv = {};
-            var csv = null;
-                $.ajax({
-                    type: "GET",
-                    url: "recent_crime.csv",
-                    success: function(data) {
-                            crime_csv = L.geoCsv(null,{
-                                titles: ['CrimeCode','Location','popup','Inside_Outside','Weapon','Post','District','Neighborhood','lng','lat','Location_1','Premise','vri_name1','Total_Incidents'],
-                                fieldSeparator: ',',
-                                lineSeparator: '\n',
-                                firstLineTitles: false,
-                                pointToLayer: function (feature, latlng) {
-                                    if (feature.properties.popup.includes("LARCENY")){
-                                        return L.circleMarker(latlng, redMarker);
-                                    }else if (feature.properties.popup.includes("BURGLARY")){
-                                        return L.circleMarker(latlng, PurpleMarker);
-                                    }else{
-                                        return L.circleMarker(latlng, greenMarker);
-                                    }
-                                },
-                        
-                                onEachFeature: function (feature, layer) {
-                                    var popup = '';
-                                    for (var clave in feature.properties) {
-                                        var title = crime_csv.getPropertyTitle(clave);
-                                        popup += '<b>'+title+'</b><br />'+feature.properties[clave]+'<br /><br />';
-                                    }
-                                    layer.bindPopup(popup);
-                                }
-                            });
-                            crime_csv.addData(data);
-                            map.addLayer(crime_csv)
-                            csv = data;
-                        },
-                    error: function (request, status, error) {
-                        alert(request.responseText + 'failed or is being blocked by your browser, please allow your browser to access local files');
-                    }
-                });
+                      onEachFeature: function(feature, layer) {
+                          var popup = '';
+                          for (var clave in feature.properties) {
+                              var title = crime_csv.getPropertyTitle(clave);
+                              popup += '<b>' + title + '</b><br />' + feature.properties[clave] + '<br /><br />';
+                          }
+                          layer.bindPopup(popup);
+                      }
+                  });
+                  crime_csv.addData(data);
+                  map.addLayer(crime_csv)
+                  csv = data;
+              },
+              error: function(request, status, error) {
+                  alert(request.responseText + 'failed or is being blocked by your browser, please allow your browser to access local files');
+              }
+          });
 
-                
+          function searchFilterA(feature) {
+              if (feature.properties.popup.includes('BURGLARY')) {
+                  return true
+              }
+          }
 
-            
-                            
-                        
-                    
-                
-            
-            
+          function searchFilterB(feature) {
+              if (feature.properties.popup.includes('LARCENY')) {
+                  return true
+              }
+          }
 
-            
-        
-            function searchFilterA(feature) {
-                if (feature.properties.popup.includes('BURGLARY')){
-                    return true
-                } 
-            }
+          function searchFilterC(feature) {
+              if (feature.properties.popup.includes('COMMON ASSAULT')) {
+                  return true
+              }
+          }
 
-            function searchFilterB(feature) {
-                if (feature.properties.popup.includes('LARCENY')){
-                    return true
-                } 
-            }
+          function searchFilterD(feature) {
+              if (feature.properties.popup.includes('AUTO THEFT')) {
+                  return true
+              }
+          }
 
-            function searchFilterC(feature) {
-                if (feature.properties.popup.includes('COMMON ASSAULT')){
-                    return true
-                } 
-            }
-
-    
-
+          var searchboxControl = createSearchboxControl();
+          var control = new searchboxControl({
+              sidebarTitleText: 'Links',
+              sidebarMenuItems: {
+                  Items: [{
+                      type: "link",
+                      name: "City of Baltimore",
+                      href: "https://www.baltimorecity.gov/",
+                      icon: "icon-local-carwash"
+                  }, ]
+              }
+          });
+          control._searchfunctionCallBack = function(searchkeywords) {
+              if (!searchkeywords) {
+                  searchkeywords = "The search call back is clicked !!"
+              }
+              searchkeywords = searchkeywords.toUpperCase()
 
 
-           
-            var crimes = L.LayerGroup([crime_csv,larcen])
-            map.addLayer(crimes)
+              var i = 0
+              map.eachLayer(function(layer) {
+                  if (i != 0) {
+                      map.removeLayer(layer)
+                      i++
+                  } else {
+                      i++
+                  }
+              });
 
 
-        var searchboxControl=createSearchboxControl();
-        var control = new searchboxControl({
-            sidebarTitleText: 'Links',
-            sidebarMenuItems: {
-                Items: [
-                    { type: "link", name: "City of Baltimore", href: "https://www.baltimorecity.gov/", icon: "icon-local-carwash" },
-                ]
-            }
-        });
-        control._searchfunctionCallBack = function (searchkeywords)
-        {
-            if (!searchkeywords) {
-                searchkeywords = "The search call back is clicked !!"
-            }
-            searchkeywords = searchkeywords.toUpperCase()
-            
-            map.removeLayer(crime_csv)
-
-            if (map.hasLayer(filtered_csv)){
-                map.removeLayer(filtered_csv)
-            }
-
-            var filtered_csv = L.geoCsv(csv,{
-                                titles: ['CrimeCode','Location','popup','Inside_Outside','Weapon','Post','District','Neighborhood','lng','lat','Location_1','Premise','vri_name1','Total_Incidents'],
-                                fieldSeparator: ',',
-                                lineSeparator: '\n',
-                                firstLineTitles: false,
-                                filter: searchFilter,
-                                onEachFeature: function (feature, layer) {
-                                    var popup = '';
-                                    for (var clave in feature.properties) {
-                                        var title = crime_csv.getPropertyTitle(clave);
-                                        popup += '<b>'+title+'</b><br />'+feature.properties[clave]+'<br /><br />';
-                                    }
-                                    layer.bindPopup(popup);
-                                }
-                            });
-                
-        
-            function searchFilter(feature) {
-                if (feature.properties.popup.includes(searchkeywords)){
-                    return true
-                } 
-            }
-        
-            map.addLayer(filtered_csv);
-
-        }
-        map.addControl(control);
-
-    
-    
-
-    function button2_click()
-    {
-        alert('button 2 clicked !!!');
-    }
-    
-    function findBurglaries(){
-        if (map.hasLayer(crime_csv)){
-            map.removeLayer(crime_csv)
-        }
-        if (map.hasLayer(filtered_csv)){
-            map.removeLayer(filtered_csv)
-        }
-
-        var burglaries =  L.geoCsv(csv,{
-                                titles: ['CrimeCode','Location','popup','Inside_Outside','Weapon','Post','District','Neighborhood','lng','lat','Location_1','Premise','vri_name1','Total_Incidents'],
-                                fieldSeparator: ',',
-                                lineSeparator: '\n',
-                                firstLineTitles: false,
-                                pointToLayer: function (feature, latlng) {
-                                    return L.circleMarker(latlng, OrangeMarker);
-                                },
-                                filter: searchFilterA,
-                                onEachFeature: function (feature, layer) {
-                                    var popup = '';
-                                    for (var clave in feature.properties) {
-                                        var title = crime_csv.getPropertyTitle(clave);
-                                        popup += '<b>'+title+'</b><br />'+feature.properties[clave]+'<br /><br />';
-                                    }
-                                    layer.bindPopup(popup);
-                                }
-                            });
-        
-        
-    }         
-   
-
-    function zoomOut() {
-        map.setZoom();
-    };
-     function zoomIn() {
-        map.setZoom(7);
-     };
-
-    function JHU() {
-        map.flyTo([39.33308586232866, -76.6330075263977],16);
-       
-    };
-   
-    
-    function refreshPage(){
-        location.reload()
-    }
-    
+              var filtered_csv = L.geoCsv(csv, {
+                  titles: ['CrimeCode', 'Location', 'popup', 'Inside_Outside', 'Weapon', 'Post', 'District', 'Neighborhood', 'lng', 'lat', 'Location_1', 'Premise', 'vri_name1', 'Total_Incidents'],
+                  fieldSeparator: ',',
+                  lineSeparator: '\n',
+                  firstLineTitles: false,
+                  filter: searchFilter,
+                  onEachFeature: function(feature, layer) {
+                      var popup = '';
+                      for (var clave in feature.properties) {
+                          var title = crime_csv.getPropertyTitle(clave);
+                          popup += '<b>' + title + '</b><br />' + feature.properties[clave] + '<br /><br />';
+                      }
+                      layer.bindPopup(popup);
+                  }
+              });
 
 
-       
-        
-        var campus =  L.geoJson(jhu);
+              function searchFilter(feature) {
+                  if (feature.properties.popup.includes(searchkeywords)) {
+                      return true
+                  }
+              }
 
-        map.addLayer(campus)
-        map.eachLayer(function (layer) {
-            layer.bindPopup("John Hopkins University");
-        });
+              map.addLayer(filtered_csv);
+
+          }
+          map.addControl(control);
+
+          function button2_click() {
+              alert('button 2 clicked !!!');
+          }
+
+          function findBurglaries() {
+              if (map.hasLayer(crime_csv)) {
+                  map.removeLayer(crime_csv)
+                  console.log('Has BASE')
+              }
+              if (map.hasLayer(filtered_csv)) {
+                  map.removeLayer(filtered_csv)
+                  console.log('Has SOURCE')
+
+              }
+
+              var burglaries = L.geoCsv(csv, {
+                  titles: ['CrimeCode', 'Location', 'popup', 'Inside_Outside', 'Weapon', 'Post', 'District', 'Neighborhood', 'lng', 'lat', 'Location_1', 'Premise', 'vri_name1', 'Total_Incidents'],
+                  fieldSeparator: ',',
+                  lineSeparator: '\n',
+                  firstLineTitles: false,
+                  filter: searchFilterA,
+                  pointToLayer: function(feature, latlng) {
+                      return L.circleMarker(latlng, OrangeMarker);
+                  },
+                  filter: searchFilterA,
+                  onEachFeature: function(feature, layer) {
+                      var popup = '';
+                      for (var clave in feature.properties) {
+                          var title = crime_csv.getPropertyTitle(clave);
+                          popup += '<b>' + title + '</b><br />' + feature.properties[clave] + '<br /><br />';
+                      }
+                      layer.bindPopup(popup);
+                  }
+              });
+              map.addLayer(burglaries);
 
 
-        var locations = []
-        
+          }
 
-       
-        
-        
-       
 
-        </script>
-        
+          function zoomOut() {
+              map.setZoom();
+          };
+
+          function zoomIn() {
+              map.setZoom(7);
+          };
+
+          function JHU() {
+              if (zoomNumber == 0) {
+                  map.flyTo([39.33308586232866, -76.6330075263977], 16);
+                  zoomNumber++
+              } else {
+                  map.flyTo([39.2904, -76.6122], 13)
+                  zoomNumber = 0;
+
+              }
+
+
+          };
+
+
+          function refreshPage() {
+              location.reload()
+          }
+
+          var campus = L.geoJson(jhu);
+
+          map.addLayer(campus)
+          map.eachLayer(function(layer) {
+              layer.bindPopup("John Hopkins University");
+          });
+
+
+          var locations = []
+
+
+          //Base layers definition and addition
+          var osmMap = L.tileLayer(osmURL, {
+              attribution: osmAttrib
+          });
+          var stamenMap = L.tileLayer(stamenURL, {
+              attribution: stamenAttrib,
+              subdomains: 'abcd',
+              minZoom: 0,
+              maxZoom: 20,
+              ext: 'png'
+          });
+
+          var baseLayers = {
+              "stamenMap": stamenMap,
+              "OSM Mapnik": osmMap,
+          }
+
+          L.control.layers(baseLayers).addTo(map);
+
+          </script>
     </body>
 </html>
