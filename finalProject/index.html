@@ -296,7 +296,28 @@
 	        maxZoom: 18
             }).addTo(map);
             var markers = L.markerClusterGroup();
+            var blueMarker = {
+                radius: 10,
+                fillColor: "#FF4500"
+            };
 
+            var redMarker = {
+                radius: 12,
+                fillColor: "#ff0000"
+            }
+
+            var OrangeMarker = {
+                radius: 8,
+                fillColor: "#FF8D33"
+            }
+            var PurpleMarker = {
+                radius: 8,
+                fillColor: "#3374FF"
+            }
+            var greenMarker = {
+                radius: 8,
+                fillColor: "#66FF8C"
+            }
             
             var crime_csv = {};
             var csv = null;
@@ -310,7 +331,13 @@
                                 lineSeparator: '\n',
                                 firstLineTitles: false,
                                 pointToLayer: function (feature, latlng) {
-                                    return L.circleMarker(latlng, redMarker);
+                                    if (feature.properties.popup.includes("LARCENY")){
+                                        return L.circleMarker(latlng, redMarker);
+                                    }else if (feature.properties.popup.includes("BURGLARY")){
+                                        return L.circleMarker(latlng, PurpleMarker);
+                                    }else{
+                                        return L.circleMarker(latlng, greenMarker);
+                                    }
                                 },
                         
                                 onEachFeature: function (feature, layer) {
@@ -331,17 +358,15 @@
                     }
                 });
 
+                
+
             
-            var legend = L.control({position: 'bottomright'});
-            legend.onAdd = function(map){
-            var div = L.DomUtil.create('div','info legend'),
-            degree = 
-            labels =[]
-            for(var i = 0; i < degree.length; i++){
-                div.innerHTML += '<i style="background:' + getColor(degree[i]+1) + '"></i>'+ degree[i] + (degree[i+1] ? '&ndash;' + degree[i+1] + '<br>':'+');
-            }
-                return div;
-            };
+                            
+                        
+                    
+                
+            
+            
 
             
         
@@ -367,28 +392,9 @@
 
 
 
-            var blueMarker = {
-                radius: 8,
-                fillColor: "#FF4500"
-            };
-
-            var redMarker = {
-                radius: 8,
-                fillColor: "#ff0000"
-            }
-
-            var OrangeMarker = {
-                radius: 8,
-                fillColor: "#FF8D33"
-            }
-            var PurpleMarker = {
-                radius: 8,
-                fillColor: "#3374FF"
-            }
-            var pinkMarker = {
-                radius: 8,
-                fillColor: "#FF3390"
-            }
+           
+            var crimes = L.LayerGroup([crime_csv,larcen])
+            map.addLayer(crimes)
 
 
         var searchboxControl=createSearchboxControl();
@@ -463,7 +469,7 @@
                                 lineSeparator: '\n',
                                 firstLineTitles: false,
                                 pointToLayer: function (feature, latlng) {
-                                    return L.circleMarker(latlng, blueMarker);
+                                    return L.circleMarker(latlng, OrangeMarker);
                                 },
                                 filter: searchFilterA,
                                 onEachFeature: function (feature, layer) {
@@ -475,7 +481,7 @@
                                     layer.bindPopup(popup);
                                 }
                             });
-        map.addLayer(burglaries)
+        
         
     }         
    
