@@ -81,11 +81,6 @@
     color: #777;
     }
 
-
-
-
-
-        
         /* style for header */
         .header {
             background-color: #333;
@@ -140,7 +135,7 @@
             height: 700px; 
             margin-left: auto;
             margin-right: auto;}
-            }
+            
         .search-input {
         font-family:Courier
         }
@@ -199,7 +194,30 @@
             font-size: 36pt
         }
         
-
+            article {
+margin-left: auto;
+            margin-right: auto;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+                height: 420px;
+                 margin-bottom:10px;
+            }
+            h2 {
+                display: block;
+                font-weight: bold;
+                font-family: "Times New Roman", serif;
+                text-align: inherit;
+                font-size: 24pt;
+            }
+            
+            p {
+                display: block;
+                font-family: "Times New Roman", serif;
+                text-align: inherit;
+                font-size: 14pt;
+                
+            }
         
         </style>
     </head>
@@ -240,13 +258,22 @@
 <br>
 <br>
 <br>
-<div class='my-legend'>
+
+        <article>
+        <h2>Crime Distribtion History and Map Info</h2>
+            <p>Baltimore, Maryland is infamously known for its significantly high crime rate, including an average violent crime rate that is high above the national average. In the past few years, violent crimes have been increasing in Baltimore and other large cities such as Washington D.C. and Chicago. Gang-related crimes are usually found clustered in drug territories. One of the most affected neighborhoods in Baltimore is the Sandtown-Winchester neighborhood in west Baltimore. This map shows a randomized selection of 100 reported crimes within the city of Baltimore. The original dataset used for this project contains 299,767 reported crimes ranging from the years 1963 to 2020, however, in an effort to optimize the speed of the leaflet map the number of crimes displayed was reduced. A link to the Baltimore City website where the data was obtained can be accessed under the link tab by the search bar. </p>
+            <br>
+            <p>Using the search bar, you are able to see the distribution of specific types of offenses by searching their terms and clicking the search button. The three included within the randomized sample used for this map are assault (both common and aggravated), larceny (larceny and larceny from auto), and burglary. Each crime type is color coded on the map with circle markers and can be seen in the accompanying legend. Each circle marker displays a popup when clicked that shows the street address the crime occurred at, the type of crime, if a weapon was involved, which district and neighborhood it occurred in, the total number of incidents in that location, and if it occurred in a car, commercial business, residential home, or on the street. Three buttons found at the bottom of the map are also helpful in locating the Johns Hopkins University campus, quickly seeing the location of burglaries (the most common type of crime reported), and a refresh button.</p>
+        </article>
+        <br>
+        <br>
+     <div class='my-legend'>
     <div class='legend-title'>TYPES OF CRIME</div>
     <div class='legend-scale'>
       <ul class='legend-labels'>
-        <li><span style='background:#F1EEF6;'></span>BURGLARY</li>
-        <li><span style='background:#BDC9E1;'></span>LARCENY</li>
-        <li><span style='background:#74A9CF;'></span>ASSAULT</li>
+        <li><span style='background:#ff0000;'></span>BURGLARY</li>
+        <li><span style='background:#FF8D33;'></span>LARCENY</li>
+        <li><span style='background:#66FF8C;'></span>ASSAULT</li>
        
       </ul>
     </div>
@@ -255,13 +282,12 @@
         <div id='map'> </div>
         <br>
         <br>
-        <br>
         <div class='btn-holder'>
         <button class="jhu-btn" type="button" onclick="JHU()">Find JHU Campus</button>
         <button class="burglary-btn" type="button" onclick="findBurglaries()">Show Burglaries</button>
         <button class="refresh-btn" type="button" onclick="refreshPage()">Refresh Page</button>
         </div>
-
+<br>
 <br>
 <br>
 <br>
